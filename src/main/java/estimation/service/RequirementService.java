@@ -3,8 +3,10 @@ package estimation.service;
 import estimation.DAO.RequirementDAO;
 import estimation.bean.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,10 @@ public class RequirementService {
     @Autowired
     private RequirementDAO requirementDAO;
 
-    public String add(){
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    public String add(String userId){
 
 
         //--requirement level
@@ -51,6 +56,7 @@ public class RequirementService {
         treeOfTransactions.setChildFolders(folders);
 
         requirement.setId(id);
+        requirement.setUserId(userId);
         requirement.setDescription(description);
         requirement.setTransactions(transactions);
         requirement.setState("待审核");
@@ -66,19 +72,42 @@ public class RequirementService {
         return id;
     }
 
-    public Requirement getRequirement(String id){
-        return requirementDAO.getRequirement(id);
+    public Requirement getRequirement(String id, String userId){
+        Requirement requirement = requirementDAO.getRequirement(id);
+        if(requirement.getUserId().equals(userId)){
+            return requirement;
+        }
+        else{
+            return null;
+        }
     }
 
-    public List<Requirement> getAllRequirements(){
-        return requirementDAO.getAllRequirements();
+    public List<Requirement> getAllRequirements(String userId){
+        return requirementDAO.getAllRequirements(userId);
     }
     
-    public void deleteRequirement(String id) {
-    	this.requirementDAO.deleteRequirement(id);
+    public void deleteRequirement(String id, String userId) {
+    	this.requirementDAO.deleteRequirement(id, userId);
     }
     
-    public void changeState(String id, String state, String remark) {
-    	this.requirementDAO.changeState(id, state, remark);
+    public void changeState(String id, String userId, String state, String remark) {
+    	this.requirementDAO.changeState(id, userId, state, remark);
+    }
+
+    public String getAccount(HttpServletRequest request)
+    {
+        java.lang.String token = request.getHeader("Authorization");
+        Boolean tokenExist = stringRedisTemplate.hasKey(token);
+        if (tokenExist) {
+            java.lang.String username = stringRedisTemplate.opsForValue().get(token);
+            return username;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public boolean checkIdentity(String id, String userId){
+        return requirementDAO.checkIdentity(id, userId);
     }
 }

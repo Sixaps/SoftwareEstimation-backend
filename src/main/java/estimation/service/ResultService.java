@@ -26,8 +26,8 @@ public class ResultService {
 	
 	private VAFState vafState = new VAFState();
 
-	public Transaction updateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
-		return resultDAO.UpdateResult(id, tId, eFDs, eTDs);
+	public Transaction updateResult(String id, String tId, String userId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
+		return resultDAO.UpdateResult(id, tId, userId, eFDs, eTDs);
 	}
 
 	public void calFileComplexity(EstimationFileData eFD) {
@@ -135,8 +135,8 @@ public class ResultService {
 		}
 	}
 	
-	public Requirement getReport(String id) {
-		Requirement requirement =  resultDAO.getReport(id);
+	public Requirement getReport(String id, String userId) {
+		Requirement requirement =  resultDAO.getReport(id, userId);
 		
 		List<Transaction> transactions = requirement.getTransactions();
 		VAF vaf = requirement.getNewVAF();

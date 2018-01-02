@@ -1,6 +1,7 @@
 package estimation.controller;
 
 import estimation.bean.VAF;
+import estimation.service.RequirementService;
 import estimation.service.VAFService;
 import net.sf.json.JSONObject;
 
@@ -9,6 +10,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by xuawai on 16/06/2017.
@@ -20,9 +23,15 @@ public class VAFController {
 	@Autowired
 	private VAFService vafService;
 
+	@Autowired
+	private RequirementService requirementService;
+
 	//增加VAF
 	@RequestMapping(value = "/addVAF/{id}", method = RequestMethod.POST)
-	public void addVAF(@RequestBody JSONObject jsonObject, @PathVariable String id) {
+	public void addVAF(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
+		String userId = requirementService.getAccount(request);
+		if(!requirementService.checkIdentity(id, userId))
+			return;
 		VAF vaf = new VAF();
 		String developmentType = jsonObject.getString("developmentType");
 		String developmentPlatform = jsonObject.getString("developmentPlatform");
@@ -54,7 +63,10 @@ public class VAFController {
 	}
 
 	@RequestMapping(value = "/changeVAF/{id}", method = RequestMethod.POST)
-	public Object changeVAF(@RequestBody JSONObject jsonObject, @PathVariable String id) {
+	public Object changeVAF(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
+		String userId = requirementService.getAccount(request);
+		if(!requirementService.checkIdentity(id, userId))
+			return null;
 		Map<Object, Object> msg = new HashMap<>();
 		try {
 			VAF vaf = new VAF();

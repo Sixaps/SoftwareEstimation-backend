@@ -3,6 +3,7 @@ package estimation.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import estimation.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,14 +19,20 @@ import estimation.service.ResultService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(value = "/estimation")
 public class ResultController {
 	@Autowired
-	ResultService resultService;
+	private ResultService resultService;
+
+	@Autowired
+	private RequirementService requirementService;
 	
 	@RequestMapping(value = "/updateResult/{id}",method = RequestMethod.POST)
-	public Transaction updateResult(@RequestBody JSONObject jsonObject,@PathVariable String id) {
+	public Transaction updateResult(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
+		String userId = requirementService.getAccount(request);
 		JSONArray TransactionArray = jsonObject.getJSONArray("eTDs");
 		JSONArray FileArray = jsonObject.getJSONArray("eFDs");
 		String tId = jsonObject.getString("tId");
@@ -80,12 +87,13 @@ public class ResultController {
 		JSONObject msg = new JSONObject();
 		msg.element("eFDs", eFDs);
 		msg.element("eTDs", eTDs);
-		return resultService.updateResult(id, tId, eFDs, eTDs);
+		return resultService.updateResult(id, tId, userId, eFDs, eTDs);
 	}
 	
 	@RequestMapping(value = "/getReport/{id}",method = RequestMethod.GET)
-	public JSONObject getReport(@PathVariable String id) {
-		Requirement requirement = resultService.getReport(id);
+	public JSONObject getReport(HttpServletRequest request, @PathVariable String id) {
+		String userId = requirementService.getAccount(request);
+		Requirement requirement = resultService.getReport(id, userId);
 		JSONObject jsonObject = new JSONObject().fromObject(requirement);
 		jsonObject.accumulate("vafState", resultService.getState(requirement));
 		return jsonObject;

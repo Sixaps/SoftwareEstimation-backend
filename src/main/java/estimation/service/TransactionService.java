@@ -32,12 +32,12 @@ public class TransactionService {
 	@Autowired
 	private RequirementDAO requirementDAO;
 
-	public void add(String id, Transaction transaction) {
+	public void add(String id, String userId, Transaction transaction) {
 		this.transactionDAO.add(id, transaction);
 	}
 
-	public void deleteArray(String id, String key) {
-		this.transactionDAO.deleteArray(id, key);
+	public void deleteArray(String id, String userId, String key) {
+		this.transactionDAO.deleteArray(id, userId, key);
 	}
 
 	//读取某需求所有的transaction信息
@@ -144,8 +144,8 @@ public class TransactionService {
 		return transactionDAO.geTransaction(id, tId);
 	}
 
-	public void deleteTransaction(String id, String tId) {
-		this.transactionDAO.deleteTransaction(id, tId);
+	public void deleteTransaction(String id, String userId, String tId) {
+		this.transactionDAO.deleteTransaction(id, userId, tId);
 	}
 
 	public void reName(String id, String tId, String tName) {

@@ -13,7 +13,7 @@ public class DescriptionService {
     @Autowired
     private DescriptionDAO descriptionDAO;
 
-    public void add(String id, Description description){
-        this.descriptionDAO.add(id, description);
+    public void add(String id, String userId, Description description){
+        this.descriptionDAO.add(id, userId, description);
     }
 }

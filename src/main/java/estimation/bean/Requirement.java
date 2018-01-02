@@ -13,6 +13,8 @@ public class Requirement {
     @Id
     private String id;
 
+    private String userId;
+
     private Description description;
 
     private List<Transaction> transactions;
@@ -143,4 +145,11 @@ public class Requirement {
 		this.workCost = workCost;
 	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
 }
