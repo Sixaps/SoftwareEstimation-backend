@@ -43,10 +43,16 @@ public class RequirementDAO {
         mongoTemplate.remove(query, Requirement.class, "requirement");
     }
 
-    public void changeState(String id, String state, String remark) {
+    public void changeStateAndRemark(String id, String state, String remark) {
         Query query = new Query(Criteria.where("_id").is(id));
         Update update = Update.update("remark", remark);
         update.set("state", state);
+        mongoTemplate.upsert(query, update, Requirement.class);
+    }
+
+    public void changeStatus(String id, String status){
+        Query query = new Query(Criteria.where("_id").is(id));
+        Update update = Update.update("state", status);
         mongoTemplate.upsert(query, update, Requirement.class);
     }
 

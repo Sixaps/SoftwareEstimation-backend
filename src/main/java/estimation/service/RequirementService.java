@@ -85,7 +85,7 @@ public class RequirementService {
     }
     
     public void changeState(String id, String state, String remark) {
-    	this.requirementDAO.changeState(id, state, remark);
+    	this.requirementDAO.changeStateAndRemark(id, state, remark);
     }
 
     public String getAccount(HttpServletRequest request)
@@ -98,6 +98,10 @@ public class RequirementService {
         else {
             return null;
         }
+    }
+
+    public void changeStatus(String id, String status){
+        requirementDAO.changeStatus(id,status);
     }
 
     public boolean checkIdentity(String id, String userId){

@@ -64,6 +64,7 @@ public class VAFController {
 		vaf.setCost(cost);
         System.out.println(id);
 		vafService.add(id, vaf);
+		requirementService.changeStatus(id, "待审核");
 	}
 
 	@RequestMapping(value = "/changeVAF/{id}", method = RequestMethod.POST)
