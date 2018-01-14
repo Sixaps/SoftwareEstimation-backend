@@ -31,7 +31,7 @@ public class TransactionDAO {
 
     //这个函数可以提到基类中去
     //删除以key为键的数组对象，其中，键也会被删除
-    public void deleteArray(String id, String userId, String key) {
+    public void deleteArray(String id, String key) {
         Query query = new Query(Criteria.where("_id").is(id));
         Update update = new Update();
         update.unset(key);
@@ -67,9 +67,6 @@ public class TransactionDAO {
         mongoTemplate.upsert(query, update, Requirement.class);
     }
 
-    //    public void addFile(String id, String pId, File file) {
-    //    	Query query = new Query(Criteria.where("_id").is(id));
-    //    }
     public Transaction geTransaction(String id, String tId) {
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class);
@@ -90,19 +87,17 @@ public class TransactionDAO {
         return requirement.getTreeOfTransactions();
     }
 
-    public void deleteTransaction(String id, String userId, String tId) {
+    public void deleteTransaction(String id, String tId) {
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class);
-        if (userId.equals(requirement.getUserId())) {
-            List<Transaction> transactions = requirement.getTransactions();
-            for (int i = 0; i < transactions.size(); i++) {
-                if (transactions.get(i).getId().equals(tId)) {
-                    transactions.remove(i);
-                }
+        List<Transaction> transactions = requirement.getTransactions();
+        for (int i = 0; i < transactions.size(); i++) {
+            if (transactions.get(i).getId().equals(tId)) {
+                transactions.remove(i);
             }
-            Update update = Update.update("transactions", transactions);
-            mongoTemplate.upsert(query, update, Requirement.class);
         }
+        Update update = Update.update("transactions", transactions);
+        mongoTemplate.upsert(query, update, Requirement.class);
     }
 
     public void reName(String id, String tId, String tName) {

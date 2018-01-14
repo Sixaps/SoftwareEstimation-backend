@@ -17,14 +17,13 @@ public class DescriptionDAO {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void add(String id, String userId,  Description description){
+    public void add(String id, Description description) {
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class, "requirement");
-        if(requirement.getUserId().equals(userId)){
-            Update update = Update.update("description.$.projectName", description.getProjectName()).set("description.$.projectDescription", description.getProjectDescription());
-            update.set("description.$.projectLeader", description.getProjectLeader());
-            update.set("description.$.projectContact",description.getProjectContact());
-            update.set("description.$.estimationMethod",description.getEstimationMethod());
-            mongoTemplate.upsert(query, update, Requirement.class);        }
+        Update update = Update.update("description.$.projectName", description.getProjectName()).set("description.$.projectDescription", description.getProjectDescription());
+        update.set("description.$.projectLeader", description.getProjectLeader());
+        update.set("description.$.projectContact", description.getProjectContact());
+        update.set("description.$.estimationMethod", description.getEstimationMethod());
+        mongoTemplate.upsert(query, update, Requirement.class);
     }
 }

@@ -7,6 +7,7 @@ import estimation.bean.Folder;
 import estimation.bean.ILFDataSet;
 import estimation.bean.Step;
 import estimation.bean.Transaction;
+import estimation.service.ManagerService;
 import estimation.service.RequirementService;
 import estimation.service.TransactionService;
 import net.sf.json.JSONArray;
@@ -32,11 +33,15 @@ public class TransactionController {
     @Autowired
     private RequirementService requirementService;
 
+    @Autowired
+    private ManagerService managerService;
+
     //增加一个新事务
     @RequestMapping(value = "/addTransaction/{id}",method = RequestMethod.POST)
     public void addTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
         String userId = requirementService.getAccount(request);
-
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
+            return;
         Transaction transaction = new Transaction();
         String transactionName = jsonObject.getString("transactionName");
         String transactionId = jsonObject.getString("tId");
@@ -164,14 +169,16 @@ public class TransactionController {
         transaction.setNameOfEIF(nameOfEIF);
         transaction.setNameOfILF(nameOfILF);
         transaction.setSteps(steps);
-        transactionService.add(id, userId, transaction);
+        transactionService.add(id, transaction);
     }
 
 
     @RequestMapping(value = "/addAllTransaction/{id}",method = RequestMethod.POST)
     public void addAllTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        transactionService.deleteArray(id, userId, "transactions");
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
+            return;
+        transactionService.deleteArray(id, "transactions");
 
         JSONArray transactionsArray = jsonObject.getJSONArray("transactions");
         for(int i=0; i<transactionsArray.size(); i++){
@@ -183,7 +190,7 @@ public class TransactionController {
     @RequestMapping(value = "/addTree/{id}", method = RequestMethod.POST)
     public void addAllTree(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        if(!requirementService.checkIdentity(id, userId))
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return;
         JSONObject tree = jsonObject.getJSONObject("tree");
     	Folder folder = new Folder();
@@ -199,7 +206,7 @@ public class TransactionController {
     @RequestMapping(value = "/getAllTransactions/{id}", method = RequestMethod.GET)
     public List<Transaction> getAllTransactions(HttpServletRequest request, @PathVariable String id){
         String userId = requirementService.getAccount(request);
-        if(!requirementService.checkIdentity(id, userId))
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return null;
     	return transactionService.getAllTransactions(id);
     }
@@ -207,7 +214,7 @@ public class TransactionController {
     @RequestMapping(value = "/getTree/{id}", method = RequestMethod.GET)
     public Folder getTree(HttpServletRequest request, @PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        if(!requirementService.checkIdentity(id, userId))
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return null;
     	return transactionService.getTree(id);
     }
@@ -215,7 +222,7 @@ public class TransactionController {
     @RequestMapping(value = "/addFile/{id}", method = RequestMethod.POST)
     public void addFile(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        if(!requirementService.checkIdentity(id, userId))
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return;
     	String name = jsonObject.getString("name");
     	String tId = jsonObject.getString("id");
@@ -232,7 +239,7 @@ public class TransactionController {
     @RequestMapping(value = "/getTransaction/{id}", method = RequestMethod.POST)
     public Transaction geTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        if(!requirementService.checkIdentity(id, userId))
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return null;
     	String tId = jsonObject.getString("tId");
     	return transactionService.geTransaction(id, tId);
@@ -240,25 +247,27 @@ public class TransactionController {
     
     @RequestMapping(value = "/deleteTransaction/{id}", method = RequestMethod.POST)
     public void deleteTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
-        String userId = requirementService.getAccount(request);
-
         String tId = jsonObject.getString("tId");
-    	transactionService.deleteTransaction(id, userId, tId);
+        String userId = requirementService.getAccount(request);
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
+            return;
+    	transactionService.deleteTransaction(id, tId);
     }
     
     @RequestMapping(value = "/updateTransaction/{id}", method = RequestMethod.POST)
     public void updateTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
-        String userId = requirementService.getAccount(request);
-
         String tId = jsonObject.getString("tId");
-    	transactionService.deleteTransaction(id, userId, tId);
+        String userId = requirementService.getAccount(request);
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
+            return;
+    	transactionService.deleteTransaction(id, tId);
     	addTransaction(request, jsonObject, id);
     }
     
     @RequestMapping(value = "/TransactionReName/{id}", method = RequestMethod.POST)
     public void TransactionReName(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        if(!requirementService.checkIdentity(id, userId))
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return;
     	String tId = jsonObject.getString("tId");
     	String tName = jsonObject.getString("tName");

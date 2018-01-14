@@ -38,17 +38,17 @@ public class RequirementService {
         description.setProjectContact("");
         description.setProjectLeader("");
              //description level--
-        List<Transaction> transactions = new ArrayList<Transaction>();
+        List<Transaction> transactions = new ArrayList<>();
         Folder treeOfTransactions = new Folder();
         Folder childFolder = new Folder();
         treeOfTransactions.setId("00000");
         treeOfTransactions.setName("tree");
         childFolder.setId("00001");
         childFolder.setName("功能模块1");
-        List<Folder> folders1 = new ArrayList<Folder>();
-        List<File> files1 = new ArrayList<File>();
-        List<Folder> folders = new ArrayList<Folder>();
-        List<File> files = new ArrayList<File>();
+        List<Folder> folders1 = new ArrayList<>();
+        List<File> files1 = new ArrayList<>();
+        List<Folder> folders = new ArrayList<>();
+        List<File> files = new ArrayList<>();
         childFolder.setChildFiles(files1);
         childFolder.setChildFolders(folders1);
         folders.add(childFolder);
@@ -72,26 +72,20 @@ public class RequirementService {
         return id;
     }
 
-    public Requirement getRequirement(String id, String userId){
-        Requirement requirement = requirementDAO.getRequirement(id);
-        if(requirement.getUserId().equals(userId)){
-            return requirement;
-        }
-        else{
-            return null;
-        }
+    public Requirement getRequirement(String id){
+        return requirementDAO.getRequirement(id);
     }
 
     public List<Requirement> getAllRequirements(String userId){
-        return requirementDAO.getAllRequirements(userId);
+        return requirementDAO.getAllRequirementsByUser(userId);
     }
     
-    public void deleteRequirement(String id, String userId) {
-    	this.requirementDAO.deleteRequirement(id, userId);
+    public void deleteRequirement(String id) {
+    	this.requirementDAO.deleteRequirement(id);
     }
     
-    public void changeState(String id, String userId, String state, String remark) {
-    	this.requirementDAO.changeState(id, userId, state, remark);
+    public void changeState(String id, String state, String remark) {
+    	this.requirementDAO.changeState(id, state, remark);
     }
 
     public String getAccount(HttpServletRequest request)
@@ -99,8 +93,7 @@ public class RequirementService {
         java.lang.String token = request.getHeader("Authorization");
         Boolean tokenExist = stringRedisTemplate.hasKey(token);
         if (tokenExist) {
-            java.lang.String username = stringRedisTemplate.opsForValue().get(token);
-            return username;
+            return stringRedisTemplate.opsForValue().get(token);
         }
         else {
             return null;

@@ -2,6 +2,7 @@ package estimation.controller;
 
 import estimation.bean.Description;
 import estimation.service.DescriptionService;
+import estimation.service.ManagerService;
 import estimation.service.RequirementService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +24,15 @@ public class DescriptionController {
     @Autowired
     private RequirementService requirementService;
 
+    @Autowired
+    private ManagerService managerService;
+
     //添加描述信息或更新现有的描述信息
     @RequestMapping(value = "/addDescription/{id}",method = RequestMethod.POST)
     public void addDescription(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
-//    		,@CookieValue(name = "RID",defaultValue = "0") String rId){
-//    	try {
-//    	if(rId == "0") {
-//    		throw new Exception("Wrong ID");
-//    	}
-//    	else
-//    		id = rId;
-//    	}
-//    	catch(Exception e) {
-//    		System.out.println(e.toString());
-//    	}
         String userId = requirementService.getAccount(request);
+        if(!requirementService.checkIdentity(id, userId))
+            return;
 
         String projectName = jsonObject.getString("projectName");
         String projectDescription = jsonObject.getString("projectDescription");
@@ -50,6 +45,6 @@ public class DescriptionController {
         description.setProjectLeader(projectLeader);
         description.setProjectContact(projectContact);
         description.setEstimationMethod(estimationMethod);
-        descriptionService.add(id, userId, description);
+        descriptionService.add(id, description);
     }
 }

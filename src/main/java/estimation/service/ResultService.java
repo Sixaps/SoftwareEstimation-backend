@@ -26,8 +26,8 @@ public class ResultService {
 	
 	private VAFState vafState = new VAFState();
 
-	public Transaction updateResult(String id, String tId, String userId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
-		return resultDAO.UpdateResult(id, tId, userId, eFDs, eTDs);
+	public Transaction updateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
+		return resultDAO.UpdateResult(id, tId, eFDs, eTDs);
 	}
 
 	public void calFileComplexity(EstimationFileData eFD) {
@@ -50,11 +50,11 @@ public class ResultService {
 		}
 		else {
 			eFD.setComplexity("无");
-			eFD.setUFP(0);;
+			eFD.setUFP(0);
 		}
 	}
 
-	public void calFileUFP(int level1, int level2, int level3, EstimationFileData eFD) {
+	private void calFileUFP(int level1, int level2, int level3, EstimationFileData eFD) {
 		int retNum = eFD.getRETNum();
 		if(retNum == 1) {
 			eFD.setComplexity(complexityLevel[level1]);
@@ -89,7 +89,7 @@ public class ResultService {
 			}
 			else {
 				eTD.setComplexity("无");
-				eTD.setUFP(0);;
+				eTD.setUFP(0);
 			}
 		}
 		else {
@@ -110,12 +110,12 @@ public class ResultService {
 			}
 			else {
 				eTD.setComplexity("无");
-				eTD.setUFP(0);;
+				eTD.setUFP(0);
 			}
 		}
 	}
 
-	public void calTransactionUTF(int level1, int level2, int level3, EstimationTransactionData eTD) {
+	private void calTransactionUTF(int level1, int level2, int level3, EstimationTransactionData eTD) {
 		int FTRNum = eTD.getFileNum();
 		if(FTRNum == 1) {
 			eTD.setComplexity(complexityLevel[level1]);
@@ -255,6 +255,5 @@ public class ResultService {
 			return false;
 		else 
 			return true;
-					
 	}
 }

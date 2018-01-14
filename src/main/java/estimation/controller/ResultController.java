@@ -3,6 +3,7 @@ package estimation.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import estimation.service.ManagerService;
 import estimation.service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,10 +30,15 @@ public class ResultController {
 
 	@Autowired
 	private RequirementService requirementService;
+
+	@Autowired
+	private ManagerService managerService;
 	
 	@RequestMapping(value = "/updateResult/{id}",method = RequestMethod.POST)
 	public Transaction updateResult(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
 		String userId = requirementService.getAccount(request);
+		if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
+			return null;
 		JSONArray TransactionArray = jsonObject.getJSONArray("eTDs");
 		JSONArray FileArray = jsonObject.getJSONArray("eFDs");
 		String tId = jsonObject.getString("tId");
@@ -87,12 +93,14 @@ public class ResultController {
 		JSONObject msg = new JSONObject();
 		msg.element("eFDs", eFDs);
 		msg.element("eTDs", eTDs);
-		return resultService.updateResult(id, tId, userId, eFDs, eTDs);
+		return resultService.updateResult(id, tId, eFDs, eTDs);
 	}
 	
 	@RequestMapping(value = "/getReport/{id}",method = RequestMethod.GET)
 	public JSONObject getReport(HttpServletRequest request, @PathVariable String id) {
 		String userId = requirementService.getAccount(request);
+		if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
+			return null;
 		Requirement requirement = resultService.getReport(id, userId);
 		JSONObject jsonObject = new JSONObject().fromObject(requirement);
 		jsonObject.accumulate("vafState", resultService.getState(requirement));

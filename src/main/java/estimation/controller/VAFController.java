@@ -1,6 +1,7 @@
 package estimation.controller;
 
 import estimation.bean.VAF;
+import estimation.service.ManagerService;
 import estimation.service.RequirementService;
 import estimation.service.VAFService;
 import net.sf.json.JSONObject;
@@ -25,6 +26,9 @@ public class VAFController {
 
 	@Autowired
 	private RequirementService requirementService;
+
+	@Autowired
+	private ManagerService managerService;
 
 	//增加VAF
 	@RequestMapping(value = "/addVAF/{id}", method = RequestMethod.POST)
@@ -65,7 +69,7 @@ public class VAFController {
 	@RequestMapping(value = "/changeVAF/{id}", method = RequestMethod.POST)
 	public Object changeVAF(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
 		String userId = requirementService.getAccount(request);
-		if(!requirementService.checkIdentity(id, userId))
+		if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
 			return null;
 		Map<Object, Object> msg = new HashMap<>();
 		try {

@@ -32,12 +32,12 @@ public class TransactionService {
 	@Autowired
 	private RequirementDAO requirementDAO;
 
-	public void add(String id, String userId, Transaction transaction) {
+	public void add(String id, Transaction transaction) {
 		this.transactionDAO.add(id, transaction);
 	}
 
-	public void deleteArray(String id, String userId, String key) {
-		this.transactionDAO.deleteArray(id, userId, key);
+	public void deleteArray(String id, String key) {
+		this.transactionDAO.deleteArray(id, key);
 	}
 
 	//读取某需求所有的transaction信息
@@ -85,16 +85,16 @@ public class TransactionService {
 	public void addFile(String id, String name, String tId) {
 		Transaction transaction = new Transaction();
 
-		List<Step> steps = new ArrayList<Step>();
+		List<Step> steps = new ArrayList<>();
 
 		Step step = new Step();
 
-		List<EIFDataSet> eifDataSets = new ArrayList<EIFDataSet>(); 
-		List<ILFDataSet> ilfDataSets = new ArrayList<ILFDataSet>();
+		List<EIFDataSet> eifDataSets = new ArrayList<>();
+		List<ILFDataSet> ilfDataSets = new ArrayList<>();
 
 		EIFDataSet eifDataSet = new EIFDataSet();
 		ILFDataSet ilfDataSet = new ILFDataSet();
-		List<String> dets = new ArrayList<String>();
+		List<String> dets = new ArrayList<>();
 		dets.add("");
 		eifDataSet.setExternalInterfaceFileName("");
 		ilfDataSet.setInnerlogicalFileName("");
@@ -108,8 +108,8 @@ public class TransactionService {
 		step.setIlfDataSets(ilfDataSets);
 		steps.add(step);
 		
-		List<EstimationFileData> estimationFileDatas = new ArrayList<EstimationFileData>();
-        List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<EstimationTransactionData>();
+		List<EstimationFileData> estimationFileDatas = new ArrayList<>();
+        List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<>();
         EstimationFileData estimationFileData = new EstimationFileData();
         EstimationTransactionData estimationTransactionData = new EstimationTransactionData();
         estimationFileData.setDET("");
@@ -144,8 +144,8 @@ public class TransactionService {
 		return transactionDAO.geTransaction(id, tId);
 	}
 
-	public void deleteTransaction(String id, String userId, String tId) {
-		this.transactionDAO.deleteTransaction(id, userId, tId);
+	public void deleteTransaction(String id, String tId) {
+		this.transactionDAO.deleteTransaction(id, tId);
 	}
 
 	public void reName(String id, String tId, String tName) {

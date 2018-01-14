@@ -22,12 +22,12 @@ public class ResultDAO {
 	@Autowired
     private MongoTemplate mongoTemplate;
 	
-	public Transaction UpdateResult(String id, String tId, String userId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
+	public Transaction UpdateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
 		Transaction transaction = transactionDAO.geTransaction(id, tId);
 		if(transaction  != null){
 		transaction.setEstimationFileDatas(eFDs);
 		transaction.setEstimationTransactionDatas(eTDs);
-		transactionDAO.deleteTransaction(id,userId, tId);
+		transactionDAO.deleteTransaction(id,tId);
 		transactionDAO.add(id, transaction);
 		}
 		return transaction;
