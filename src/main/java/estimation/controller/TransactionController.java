@@ -1,12 +1,6 @@
 package estimation.controller;
 
-import estimation.bean.EIFDataSet;
-import estimation.bean.EstimationFileData;
-import estimation.bean.EstimationTransactionData;
-import estimation.bean.Folder;
-import estimation.bean.ILFDataSet;
-import estimation.bean.Step;
-import estimation.bean.Transaction;
+import estimation.bean.*;
 import estimation.service.ManagerService;
 import estimation.service.RequirementService;
 import estimation.service.TransactionService;
@@ -45,35 +39,23 @@ public class TransactionController {
         Transaction transaction = new Transaction();
         String transactionName = jsonObject.getString("transactionName");
         String transactionId = jsonObject.getString("tId");
-        String nameOfEIF;
-        String nameOfILF;
         JSONArray stepsArray;
-        
-        if(jsonObject.has("nameOfEIF"))
-        	nameOfEIF = jsonObject.getString("nameOfEIF");
-        else
-        	nameOfEIF = new String();
-        
-        if(jsonObject.has("nameOfILF"))
-        	nameOfILF = jsonObject.getString("nameOfILF");
-        else
-        	nameOfILF = new String();
-        
-        List<Step> steps = new ArrayList<Step>();
+
+        List<Step> steps = new ArrayList<>();
         //--step level
-        
-        if(jsonObject.has("steps"))
+
+        if(jsonObject.get("steps") != null)
         	stepsArray = jsonObject.getJSONArray("steps");
         else {
         	stepsArray = new JSONArray();
         	Step step = new Step();
-            
-            List<EIFDataSet> eifDataSets = new ArrayList<EIFDataSet>(); 
-            List<ILFDataSet> ilfDataSets = new ArrayList<ILFDataSet>();
-            
+
+            List<EIFDataSet> eifDataSets = new ArrayList<>();
+            List<ILFDataSet> ilfDataSets = new ArrayList<>();
+
             EIFDataSet eifDataSet = new EIFDataSet();
             ILFDataSet ilfDataSet = new ILFDataSet();
-            List<String> dets = new ArrayList<String>();
+            List<String> dets = new ArrayList<>();
             dets.add("");
             eifDataSet.setExternalInterfaceFileName("");
             ilfDataSet.setInnerlogicalFileName("");
@@ -81,7 +63,7 @@ public class TransactionController {
             ilfDataSet.setDET(dets);
             eifDataSets.add(eifDataSet);
             ilfDataSets.add(ilfDataSet);
-            
+
             step.setStepName("");
             step.setEifDataSets(eifDataSets);
             step.setIlfDataSets(ilfDataSets);
@@ -91,8 +73,8 @@ public class TransactionController {
             Step step = new Step();
             JSONObject stepObject = (JSONObject) stepsArray.get(i);
             String stepName = stepObject.getString("name");
-            List<ILFDataSet> ilfDataSets = new ArrayList<ILFDataSet>();
-            List<EIFDataSet> eifDataSets = new ArrayList<EIFDataSet>();
+            List<ILFDataSet> ilfDataSets = new ArrayList<>();
+            List<EIFDataSet> eifDataSets = new ArrayList<>();
             //--concerningDataSet level
             JSONArray EIFDataSetsArray = stepObject.getJSONArray("eifs");
             JSONArray ILFDataSetsArray = stepObject.getJSONArray("ilfs");
@@ -100,35 +82,41 @@ public class TransactionController {
                 EIFDataSet eifDataSet = new EIFDataSet();
                 JSONObject eifDataSetObject = (JSONObject) EIFDataSetsArray.get(j);
                 String logicalFileName = eifDataSetObject.getString("name");
-                
+
                 JSONArray eifDETArray = eifDataSetObject.getJSONArray("dataFields");
-                List<String> eifDETs = new ArrayList<String>();
+                List<String> eifDETs = new ArrayList<>();
+                if(eifDETArray.size()==0){
+                    eifDETs.add("");
+                }
                 for(int k = 0; k < eifDETArray.size();k++) {
                 	JSONObject eifDET = (JSONObject)eifDETArray.get(k);
                 	String DET = eifDET.getString("value");
                 	eifDETs.add(DET);
                 }
 
-                
+
                 eifDataSet.setExternalInterfaceFileName(logicalFileName);
                 eifDataSet.setDET(eifDETs);
                 eifDataSets.add(eifDataSet);
             }
-            
+
             for(int j=0; j<ILFDataSetsArray.size(); j++){
                 ILFDataSet ilfDataSet = new ILFDataSet();
                 JSONObject ilfDataSetObject = (JSONObject) ILFDataSetsArray.get(j);
                 String logicalFileName = ilfDataSetObject.getString("name");
-                
+
                 JSONArray ilfDETArray = ilfDataSetObject.getJSONArray("dataFields");
-                List<String> ilfDETs = new ArrayList<String>();
+                List<String> ilfDETs = new ArrayList<>();
+                if(ilfDETArray.size()==0){
+                    ilfDETs.add("");
+                }
                 for(int k = 0; k < ilfDETArray.size();k++) {
                 	JSONObject ilfDET = (JSONObject)ilfDETArray.get(k);
                 	String DET = ilfDET.getString("value");
                 	ilfDETs.add(DET);
                 }
 
-                
+
                 ilfDataSet.setInnerlogicalFileName(logicalFileName);
                 ilfDataSet.setDET(ilfDETs);
                 ilfDataSets.add(ilfDataSet);
@@ -140,18 +128,11 @@ public class TransactionController {
             steps.add(step);
         }
         //step level--
-        
-        List<EstimationFileData> estimationFileDatas = new ArrayList<EstimationFileData>();
-        List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<EstimationTransactionData>();
-        EstimationFileData estimationFileData = new EstimationFileData();
+
+        List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<>();
         EstimationTransactionData estimationTransactionData = new EstimationTransactionData();
-        estimationFileData.setDET("");
-        estimationFileData.setDETNum(0);
-        estimationFileData.setFileType("");
-        estimationFileData.setName("");
-        estimationFileData.setRET("");
-        estimationFileData.setRETNum(0);
-        
+
+
         estimationTransactionData.setDET("");
         estimationTransactionData.setDETNum(0);
         estimationTransactionData.setFileNum(0);
@@ -159,33 +140,15 @@ public class TransactionController {
         estimationTransactionData.setTransactionType("");
         estimationTransactionData.setName("");
 
-        estimationFileDatas.add(estimationFileData);
         estimationTransactionDatas.add(estimationTransactionData);
-        
-        transaction.setEstimationFileDatas(estimationFileDatas);
+
         transaction.setEstimationTransactionDatas(estimationTransactionDatas);
         transaction.setTransactionName(transactionName);
         transaction.setId(transactionId);
-        transaction.setNameOfEIF(nameOfEIF);
-        transaction.setNameOfILF(nameOfILF);
         transaction.setSteps(steps);
         transactionService.add(id, transaction);
     }
 
-
-    @RequestMapping(value = "/addAllTransaction/{id}",method = RequestMethod.POST)
-    public void addAllTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
-        String userId = requirementService.getAccount(request);
-        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
-            return;
-        transactionService.deleteArray(id, "transactions");
-
-        JSONArray transactionsArray = jsonObject.getJSONArray("transactions");
-        for(int i=0; i<transactionsArray.size(); i++){
-            JSONObject transactionObject = (JSONObject) transactionsArray.get(i);
-            addTransaction(request, transactionObject, id);
-        }
-    }
     
     @RequestMapping(value = "/addTree/{id}", method = RequestMethod.POST)
     public void addAllTree(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
@@ -196,27 +159,24 @@ public class TransactionController {
     	Folder folder = new Folder();
     	folder.setName(tree.getString("name"));
     	folder.setId(tree.getString("id"));
-    	List<String> tIds = new ArrayList<String>();
+    	List<String> tIds = new ArrayList<>();
     	transactionService.buildTree(folder, tree);
     	transactionService.getAllTransactionId(folder, tIds);
     	transactionService.updateTransactionList(id, tIds);
     	transactionService.addTree(id, folder);
     }
     
-    @RequestMapping(value = "/getAllTransactions/{id}", method = RequestMethod.GET)
-    public List<Transaction> getAllTransactions(HttpServletRequest request, @PathVariable String id){
-        String userId = requirementService.getAccount(request);
-        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
-            return null;
-    	return transactionService.getAllTransactions(id);
-    }
-    
     @RequestMapping(value = "/getTree/{id}", method = RequestMethod.GET)
-    public Folder getTree(HttpServletRequest request, @PathVariable String id) {
+    public Object getTree(HttpServletRequest request, @PathVariable String id) {
         String userId = requirementService.getAccount(request);
+        Requirement requirement = requirementService.getRequirement(id);
         if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return null;
-    	return transactionService.getTree(id);
+        Folder folder = requirement.getTreeOfTransactions();
+        JSONObject jsonObject = new JSONObject().fromObject(folder);
+        jsonObject.accumulate("eifTable", requirement.getAllEIFData());
+        jsonObject.accumulate("ilfTable", requirement.getAllILFData());
+        return jsonObject;
     }
     
     @RequestMapping(value = "/addFile/{id}", method = RequestMethod.POST)
@@ -237,12 +197,14 @@ public class TransactionController {
     }
     
     @RequestMapping(value = "/getTransaction/{id}", method = RequestMethod.POST)
-    public Transaction geTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
+    public Object geTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
         String userId = requirementService.getAccount(request);
         if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
             return null;
     	String tId = jsonObject.getString("tId");
-    	return transactionService.geTransaction(id, tId);
+        JSONObject jsonObject2 = new JSONObject().fromObject(transactionService.geTransaction(id, tId));
+        jsonObject2.accumulate("estimationFileDatas", requirementService.getRequirement(id).getEstimationFileDatas());
+    	return jsonObject2;
     }
     
     @RequestMapping(value = "/deleteTransaction/{id}", method = RequestMethod.POST)
@@ -257,11 +219,13 @@ public class TransactionController {
     @RequestMapping(value = "/updateTransaction/{id}", method = RequestMethod.POST)
     public void updateTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
         String tId = jsonObject.getString("tId");
-        String userId = requirementService.getAccount(request);
-        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
-            return;
+
     	transactionService.deleteTransaction(id, tId);
     	addTransaction(request, jsonObject, id);
+    	JSONArray jsonArray = jsonObject.getJSONArray("ILFTable");
+        transactionService.updateILFAndEIFData(id, jsonArray, 1);
+        jsonArray = jsonObject.getJSONArray("EIFTable");
+        transactionService.updateILFAndEIFData(id, jsonArray, 2);
     }
     
     @RequestMapping(value = "/TransactionReName/{id}", method = RequestMethod.POST)

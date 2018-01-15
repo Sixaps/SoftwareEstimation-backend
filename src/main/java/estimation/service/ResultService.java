@@ -142,18 +142,18 @@ public class ResultService {
 		VAF vaf = requirement.getNewVAF();
 		
 		Transaction transaction;
+
 		List<EstimationFileData> eFDs;
 		List<EstimationTransactionData> eTDs;
 		int ufp = 0;
-		
+
+		eFDs = requirement.getEstimationFileDatas();
+		for(int j = 0; j < eFDs.size(); j++) {
+			ufp += eFDs.get(j).getUFP();
+		}
 		for(int i = 0;i < transactions.size();i++) {
 			transaction = transactions.get(i);
-			eFDs = transaction.getEstimationFileDatas();
 			eTDs = transaction.getEstimationTransactionDatas();
-			
-			for(int j = 0; j < eFDs.size(); j++) {
-				ufp += eFDs.get(j).getUFP();
-			}
 			
 			for(int j = 0; j < eTDs.size(); j++) {
 				ufp += eTDs.get(j).getUFP();

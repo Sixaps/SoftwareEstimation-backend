@@ -35,15 +35,16 @@ public class ResultController {
 	private ManagerService managerService;
 	
 	@RequestMapping(value = "/updateResult/{id}",method = RequestMethod.POST)
-	public Transaction updateResult(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
+	public Object updateResult(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
 		String userId = requirementService.getAccount(request);
 		if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
 			return null;
+
 		JSONArray TransactionArray = jsonObject.getJSONArray("eTDs");
 		JSONArray FileArray = jsonObject.getJSONArray("eFDs");
 		String tId = jsonObject.getString("tId");
 		
-		List<EstimationTransactionData> eTDs = new ArrayList<EstimationTransactionData>();
+		List<EstimationTransactionData> eTDs = new ArrayList<>();
 		for(int i = 0;i < TransactionArray.size();i++) {
 			EstimationTransactionData eTD = new EstimationTransactionData();
 			JSONObject transactionData = TransactionArray.getJSONObject(i);
@@ -90,10 +91,9 @@ public class ResultController {
 			eFDs.add(eFD);
 		}
 		
-		JSONObject msg = new JSONObject();
-		msg.element("eFDs", eFDs);
-		msg.element("eTDs", eTDs);
-		return resultService.updateResult(id, tId, eFDs, eTDs);
+		JSONObject msg = new JSONObject().fromObject(resultService.updateResult(id, tId, eFDs, eTDs));
+		msg.accumulate("estimationFileDatas", requirementService.getRequirement(id).getEstimationFileDatas());
+		return msg;
 	}
 	
 	@RequestMapping(value = "/getReport/{id}",method = RequestMethod.GET)

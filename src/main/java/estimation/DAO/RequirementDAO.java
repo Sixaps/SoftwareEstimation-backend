@@ -1,6 +1,8 @@
 package estimation.DAO;
 
 import com.sun.org.apache.regexp.internal.RE;
+import estimation.bean.EstimationFileData;
+import estimation.bean.FileTable;
 import estimation.bean.Requirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -33,7 +35,7 @@ public class RequirementDAO {
         return mongoTemplate.find(query, Requirement.class, "requirement");
     }
 
-    public List<Requirement> getAllRequirements(String userId) {
+    public List<Requirement> getAllRequirements() {
         return mongoTemplate.findAll(Requirement.class, "requirement");
     }
 
@@ -60,5 +62,23 @@ public class RequirementDAO {
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class, "requirement");
         return requirement.getUserId().equals(userId);
+    }
+
+    public void updateTableOfILF(String id, List<FileTable> fileTables){
+        Query query = new Query(Criteria.where("_id").is(id));
+        Update update = Update.update("allILFData", fileTables);
+        mongoTemplate.upsert(query, update, Requirement.class);
+    }
+
+    public void updateTableOfEIF(String id, List<FileTable> fileTables){
+        Query query = new Query(Criteria.where("_id").is(id));
+        Update update = Update.update("allEIFData", fileTables);
+        mongoTemplate.upsert(query, update, Requirement.class);
+    }
+
+    public void updateTableOfeFD(String id, List<EstimationFileData> estimationFileDatas){
+        Query query = new Query(Criteria.where("_id").is(id));
+        Update update = Update.update("estimationFileDatas", estimationFileDatas);
+        mongoTemplate.upsert(query, update, Requirement.class);
     }
 }

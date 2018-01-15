@@ -47,7 +47,7 @@ public class RequirementController {
     @RequestMapping(value = "/getAllRequirementsByUser",method = RequestMethod.GET)
     public List<Requirement> getAllRequirementsByUser(HttpServletRequest request) {
         String userId = requirementService.getAccount(request);
-        return requirementService.getAllRequirements(userId);
+        return requirementService.getAllRequirementsByUser(userId);
     }
 
     //返回所有记录
@@ -56,7 +56,7 @@ public class RequirementController {
         String userId = requirementService.getAccount(request);
         if(!managerService.judgeIdentity(userId))
             return null;
-        return requirementService.getAllRequirements(userId);
+        return requirementService.getAllRequirements();
     }
 
     @RequestMapping(value = "/deleteRequirement/{id}", method = RequestMethod.POST)

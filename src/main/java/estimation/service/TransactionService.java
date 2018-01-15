@@ -2,15 +2,7 @@ package estimation.service;
 
 import estimation.DAO.RequirementDAO;
 import estimation.DAO.TransactionDAO;
-import estimation.bean.EIFDataSet;
-import estimation.bean.EstimationFileData;
-import estimation.bean.EstimationTransactionData;
-import estimation.bean.File;
-import estimation.bean.Folder;
-import estimation.bean.ILFDataSet;
-import estimation.bean.Requirement;
-import estimation.bean.Step;
-import estimation.bean.Transaction;
+import estimation.bean.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -108,32 +100,20 @@ public class TransactionService {
 		step.setIlfDataSets(ilfDataSets);
 		steps.add(step);
 		
-		List<EstimationFileData> estimationFileDatas = new ArrayList<>();
         List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<>();
-        EstimationFileData estimationFileData = new EstimationFileData();
         EstimationTransactionData estimationTransactionData = new EstimationTransactionData();
-        estimationFileData.setDET("");
-        estimationFileData.setDETNum(0);
-        estimationFileData.setFileType("");
-        estimationFileData.setName("");
-        estimationFileData.setRET("");
-        estimationFileData.setRETNum(0);
-        
-        estimationTransactionData.setDET("");
+
+		estimationTransactionData.setDET("");
         estimationTransactionData.setDETNum(0);
         estimationTransactionData.setFileNum(0);
         estimationTransactionData.setLogicalFile("");
         estimationTransactionData.setTransactionType("");
         estimationTransactionData.setName("");
 
-        estimationFileDatas.add(estimationFileData);
         estimationTransactionDatas.add(estimationTransactionData);
         
-        transaction.setEstimationFileDatas(estimationFileDatas);
         transaction.setEstimationTransactionDatas(estimationTransactionDatas);
 		transaction.setId(tId);
-		transaction.setNameOfEIF("");
-		transaction.setNameOfILF("");
 		transaction.setSteps(steps);
 		transaction.setTransactionName(name);
 
@@ -163,5 +143,23 @@ public class TransactionService {
 	
 	public void updateTransactionList(String id, List<String> tIds) {
 		this.transactionDAO.updateTransaction(id, tIds);
+	}
+
+	public void updateILFAndEIFData(String id, JSONArray jsonArray, int flag){
+		JSONObject jsonObject;
+		List<FileTable> fileTables = new ArrayList<>();
+		for(int i = 0; i < jsonArray.size(); i++){
+			jsonObject = (JSONObject)jsonArray.get(i);
+			String file = jsonObject.getString("name");
+			String DETs = jsonObject.getString("DET");
+			FileTable fileTable = new FileTable();
+			fileTable.setAllDET(DETs);
+			fileTable.setFileName(file);
+			fileTables.add(fileTable);
+		}
+		if(flag == 1)
+		    requirementDAO.updateTableOfILF(id, fileTables);
+        else
+            requirementDAO.updateTableOfEIF(id, fileTables);
 	}
 }

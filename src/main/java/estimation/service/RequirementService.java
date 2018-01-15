@@ -63,8 +63,24 @@ public class RequirementService {
         requirement.setTreeOfTransactions(treeOfTransactions);
         requirement.setCreateTime(createTime);
         requirement.setRemark("");
+
+        List<EstimationFileData> estimationFileDatas = new ArrayList<>();
+        EstimationFileData estimationFileData = new EstimationFileData();
+        estimationFileData.setDET("");
+        estimationFileData.setDETNum(0);
+        estimationFileData.setFileType("");
+        estimationFileData.setName("");
+        estimationFileData.setRET("");
+        estimationFileData.setRETNum(0);
+        estimationFileDatas.add(estimationFileData);
+        requirement.setEstimationFileDatas(estimationFileDatas);
         //requirement level--
 
+        List<FileTable> fileTables = new ArrayList<>();
+        FileTable fileTable = new FileTable();
+        fileTables.add(fileTable);
+        requirement.setAllEIFData(fileTables);
+        requirement.setAllILFData(fileTables);
 
 
         this.requirementDAO.add(requirement);
@@ -76,8 +92,12 @@ public class RequirementService {
         return requirementDAO.getRequirement(id);
     }
 
-    public List<Requirement> getAllRequirements(String userId){
+    public List<Requirement> getAllRequirementsByUser(String userId){
         return requirementDAO.getAllRequirementsByUser(userId);
+    }
+
+    public List<Requirement> getAllRequirements(){
+        return requirementDAO.getAllRequirements();
     }
     
     public void deleteRequirement(String id) {

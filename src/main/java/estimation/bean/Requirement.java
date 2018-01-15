@@ -38,6 +38,36 @@ public class Requirement {
     private double workTime;
     
     private double workCost;
+
+    private List<FileTable> allEIFData;
+
+    private List<FileTable> allILFData;
+
+    private List<EstimationFileData> estimationFileDatas;
+
+    public List<FileTable> getAllEIFData() {
+        return allEIFData;
+    }
+
+    public void setAllEIFData(List<FileTable> allEIFData) {
+        this.allEIFData = allEIFData;
+    }
+
+    public List<FileTable> getAllILFData() {
+        return allILFData;
+    }
+
+    public void setAllILFData(List<FileTable> allILFData) {
+        this.allILFData = allILFData;
+    }
+
+    public List<EstimationFileData> getEstimationFileDatas() {
+        return estimationFileDatas;
+    }
+
+    public void setEstimationFileDatas(List<EstimationFileData> estimationFileDatas) {
+        this.estimationFileDatas = estimationFileDatas;
+    }
     
     public List<Transaction> getTransactions() {
         return transactions;
@@ -49,7 +79,6 @@ public class Requirement {
 
     public String getId() {
         return id;
-
     }
 
     public void setId(String id) {

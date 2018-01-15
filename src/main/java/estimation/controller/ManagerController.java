@@ -18,7 +18,7 @@ import java.util.Map;
  * @date : 2018/1/14
  */
 @RestController
-@RequestMapping(value = "/manager")
+@RequestMapping(value = "/estimation")
 public class ManagerController {
 
     @Autowired

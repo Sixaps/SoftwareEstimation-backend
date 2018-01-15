@@ -14,22 +14,8 @@ public class Transaction {
     private String transactionName;
 
     private List<Step> steps;
-    
-    private String nameOfILF;
-    
-    private String nameOfEIF;
-    
-    private List<EstimationFileData> estimationFileDatas;
-    
+
     private List<EstimationTransactionData> estimationTransactionDatas;
-
-	public List<EstimationFileData> getEstimationFileDatas() {
-		return estimationFileDatas;
-	}
-
-	public void setEstimationFileDatas(List<EstimationFileData> estimationFileDatas) {
-		this.estimationFileDatas = estimationFileDatas;
-	}
 
 	public List<EstimationTransactionData> getEstimationTransactionDatas() {
 		return estimationTransactionDatas;
@@ -55,14 +41,6 @@ public class Transaction {
     public void setSteps(List<Step> steps) {
         this.steps = steps;
     }
-    
-    public String getNameOfILF() {
-		return nameOfILF;
-	}
-    
-    public void setNameOfILF(String nameOfILF) {
-		this.nameOfILF = nameOfILF;
-	}
 
 	public String getId() {
 		return id;
@@ -70,13 +48,5 @@ public class Transaction {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public String getNameOfEIF() {
-		return nameOfEIF;
-	}
-
-	public void setNameOfEIF(String nameOfEIF) {
-		this.nameOfEIF = nameOfEIF;
 	}
 }

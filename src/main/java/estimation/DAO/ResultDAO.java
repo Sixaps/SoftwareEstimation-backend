@@ -2,6 +2,7 @@ package estimation.DAO;
 
 import java.util.List;
 
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -18,6 +19,9 @@ public class ResultDAO {
 	
 	@Autowired
 	private TransactionDAO transactionDAO;
+
+	@Autowired
+	private RequirementDAO requirementDAO;
 	
 	@Autowired
     private MongoTemplate mongoTemplate;
@@ -25,7 +29,7 @@ public class ResultDAO {
 	public Transaction UpdateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
 		Transaction transaction = transactionDAO.geTransaction(id, tId);
 		if(transaction  != null){
-		transaction.setEstimationFileDatas(eFDs);
+		requirementDAO.updateTableOfeFD(id, eFDs);
 		transaction.setEstimationTransactionDatas(eTDs);
 		transactionDAO.deleteTransaction(id,tId);
 		transactionDAO.add(id, transaction);
