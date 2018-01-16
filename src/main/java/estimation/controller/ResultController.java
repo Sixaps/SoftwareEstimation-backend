@@ -101,7 +101,7 @@ public class ResultController {
 		String userId = requirementService.getAccount(request);
 		if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
 			return null;
-		Requirement requirement = resultService.getReport(id, userId);
+		Requirement requirement = resultService.getReport(id);
 		JSONObject jsonObject = new JSONObject().fromObject(requirement);
 		jsonObject.accumulate("vafState", resultService.getState(requirement));
 		return jsonObject;

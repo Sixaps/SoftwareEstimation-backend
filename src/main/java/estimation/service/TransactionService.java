@@ -162,4 +162,8 @@ public class TransactionService {
         else
             requirementDAO.updateTableOfEIF(id, fileTables);
 	}
+
+	public void updateETDs(String id,String tId, List<EstimationTransactionData> eTDs){
+		transactionDAO.updateETDs(id,tId,eTDs);
+	}
 }

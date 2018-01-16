@@ -1,5 +1,6 @@
 package estimation.DAO;
 
+import estimation.bean.EstimationTransactionData;
 import estimation.bean.Folder;
 import estimation.bean.Requirement;
 import estimation.bean.Transaction;
@@ -112,6 +113,15 @@ public class TransactionDAO {
         }
         Update update = Update.update("transactions", transactions);
         mongoTemplate.upsert(query, update, Requirement.class);
+    }
+
+    public void updateETDs(String id, String tId, List<EstimationTransactionData> eTDs){
+        Transaction transaction = geTransaction(id, tId);
+        if(transaction  != null){
+            transaction.setEstimationTransactionDatas(eTDs);
+            deleteTransaction(id,tId);
+            add(id, transaction);
+        }
     }
 
 

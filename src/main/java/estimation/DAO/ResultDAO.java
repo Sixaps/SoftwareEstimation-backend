@@ -37,7 +37,7 @@ public class ResultDAO {
 		return transaction;
 	}
 	
-	public Requirement getReport(String id, String userId) {
+	public Requirement getReport(String id) {
         return mongoTemplate.findOne(new Query(Criteria.where("_id").is(id)),Requirement.class);
 	}
 	

@@ -220,8 +220,11 @@ public class TransactionController {
     public void updateTransaction(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
         String tId = jsonObject.getString("tId");
 
+        Transaction transaction = transactionService.geTransaction(id, tId);
+        List<EstimationTransactionData> eTDs =  transaction.getEstimationTransactionDatas();
     	transactionService.deleteTransaction(id, tId);
     	addTransaction(request, jsonObject, id);
+    	transactionService.updateETDs(id, tId, eTDs);
     	JSONArray jsonArray = jsonObject.getJSONArray("ILFTable");
         transactionService.updateILFAndEIFData(id, jsonArray, 1);
         jsonArray = jsonObject.getJSONArray("EIFTable");

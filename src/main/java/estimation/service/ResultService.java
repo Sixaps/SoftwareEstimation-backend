@@ -135,8 +135,8 @@ public class ResultService {
 		}
 	}
 	
-	public Requirement getReport(String id, String userId) {
-		Requirement requirement =  resultDAO.getReport(id, userId);
+	public Requirement getReport(String id) {
+		Requirement requirement =  resultDAO.getReport(id);
 		
 		List<Transaction> transactions = requirement.getTransactions();
 		VAF vaf = requirement.getNewVAF();
