@@ -92,7 +92,7 @@ Edit adjustment factors for the project.
 
 The business architecture outline the key components in each layers of the project systems. Here is our Business Architecture:
 
-![Business Architecture Diagram](.\images\high-level_design\Business_Architecture_Diagram.png)
+![Business Architecture Diagram](/images/high-level_design/Business_Architecture_Diagram.png)
 
 In the view layer,  we have two roles in the system, which can see different pages and have different functions. Because the whole estimation system is a subsystem of the Crowdsourcing System, and the login/logout function is realized by them. What we need to do is just the process of estimation.
 
@@ -108,7 +108,7 @@ In the Model Layer, we need to store the data of all the requirements and the ma
 
 The architecture of the technology stacks (coding language, frameworks, libraries, styles, etc) used in the project. Here is our Technology Architecture:
 
-![Technology Architecture Diagram](.\images\high-level_design\Technology_Architecture_Diagram.png)
+![Technology Architecture Diagram](images/high-level_design/Technology_Architecture_Diagram.png)
 
 In the UI Layer, we use Vuejs as our front end frame and build the front end on the Nodejs.
 
@@ -120,7 +120,7 @@ In the Persistence Layer, we use MongoDB for basic data storage, while using Red
 
 Deployment Topology shows how the whole project is deployed in the physical environment, including servers, VMs/containers, networks, key components, etc. An overview picture is required to show the topology. Here is our Deployment Topology:
 
-![Deployment Topology Diagram](.\images\high-level_design\Deployment_Topology_Diagram.png)
+![Deployment Topology Diagram](images/high-level_design/Deployment_Topology_Diagram.png)
 
 We use the method of front and rear separation to deploy, at the same time, the back end of our estimation system and the back end of the crowdsourcing system are respectively deployed on two computers, respectively interacting with different databases, but together for the same front-end service. This depends on spring's support for cross-domain access, and the low coupling between the estimate system and the crowdsourcing system.
 
@@ -132,7 +132,7 @@ An Entity-Relation Diagram is required to show the concepts in the project and t
 
 Here is our E-R diagram:
 
-![ER Diagram](.\images\high-level_design\ER_Diagram.png)
+![ER Diagram](images/high-level_design/ER_Diagram.png)
 
 #### Relationship
 

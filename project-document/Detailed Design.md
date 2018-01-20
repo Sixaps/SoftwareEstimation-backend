@@ -8,7 +8,7 @@ The sequence diagram is to show the whole process of the system from the entry p
 
 ### Create Estimate Task
 
-![Sequence Diagram -- CreateEstimationProject](.\images\detailed_design\Sequence_Diagram_CreateEstimationProject.png)
+![Sequence Diagram -- CreateEstimationProject](images/detailed_design/Sequence_Diagram_CreateEstimationProject.png)
 
 
 When a user sends a request to create an estimate task through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it is logged on, it further determines whether it is an administrator. 
@@ -17,7 +17,7 @@ When confirming that the sending request is a regular user, controller assigns t
 
 ### Add Project Description 
 
-![Sequence Diagram -- addDescription](.\images\detailed_design\Sequence_Diagram_addDescription.png)
+![Sequence Diagram -- addDescription](images/detailed_design/Sequence_Diagram_addDescription.png)
 
 When a user sends a request to add a project description through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it is logged in, it is further judged as an administrator. 
 
@@ -25,7 +25,7 @@ When confirming that the request is sent to a regular user, controller will assi
 
 ### Functional decomposition
 
-![Sequence Diagram -- FictionDiv](.\images\detailed_design\Sequence_Diagram_FictionDiv.png)
+![Sequence Diagram -- FictionDiv](images/detailed_design/Sequence_Diagram_FictionDiv.png)
 
 When a user sends a request to add a function decomposition through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator. 
 
@@ -33,7 +33,7 @@ When confirming that the request is sent to a regular user, controller will assi
 
 ### Add Adjustment factor
 
-![Sequence Diagram -- addVAF](.\images\detailed_design\Sequence_Diagram_addVAF.png)
+![Sequence Diagram -- addVAF](images/detailed_design/Sequence_Diagram_addVAF.png)
 
 When a user sends a request to add an adjustment factor through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator. 
 
@@ -41,7 +41,7 @@ When confirming that a regular user is sending the request, controller assigns t
 
 ###Update Estimate Data
 
-![Sequence Diagram -- updateResult](.\images\detailed_design\Sequence_Diagram_updateResult.png)
+![Sequence Diagram -- updateResult](images/detailed_design/Sequence_Diagram_updateResult.png)
 
 When a user sends a request to update the estimated data through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator. 
 
@@ -49,7 +49,7 @@ When the administrator is confirmed to send the request, controller assigns the 
 
 ### Get Estimation Report
 
-![Sequence Diagram -- GetReport](.\images\detailed_design\Sequence_Diagram_GetReport.png)
+![Sequence Diagram -- GetReport](images/detailed_design/Sequence_Diagram_GetReport.png)
 
 When a user sends a request to obtain an estimate report through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator.
 
