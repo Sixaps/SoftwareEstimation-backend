@@ -6,7 +6,7 @@ This project is used as the document template of X-Lab, the document template in
 
 ## How to Use It
 
-###For backend
+### For backend
 
 #### Environment Requirements
 
@@ -46,7 +46,7 @@ mvn install
 
 
 
-###For frontend
+### For frontend
 
 #### Environment Requirements
 
