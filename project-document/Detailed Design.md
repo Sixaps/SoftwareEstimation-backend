@@ -6,15 +6,16 @@
 
 The sequence diagram is to show the whole process of the system from the entry point to the end point, for each user scenario. Here are our sequence diagrams: 
 
-###Create Estimate Task
+### Create Estimate Task
 
 ![Sequence Diagram -- CreateEstimationProject](.\images\detailed_design\Sequence_Diagram_CreateEstimationProject.png)
+
 
 When a user sends a request to create an estimate task through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it is logged on, it further determines whether it is an administrator. 
 
 When confirming that the sending request is a regular user, controller assigns the task to the corresponding method in the service, and the service will use the method of the DAO class  to deposit it in the database after completing the initialization of the estimate task, and return the ID of the estimate task.
 
-###Add Project Description 
+### Add Project Description 
 
 ![Sequence Diagram -- addDescription](.\images\detailed_design\Sequence_Diagram_addDescription.png)
 
