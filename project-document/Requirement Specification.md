@@ -138,7 +138,7 @@ UC03
 
 7. 保存
 
-   ![functionDecomposion](images/requirement_specification/functionDecomposion.png)
+   ![function Decomposion](images/requirement_specification/functionDecomposion.png)
 
 ------
 
