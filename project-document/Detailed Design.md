@@ -8,7 +8,7 @@ The sequence diagram is to show the whole process of the system from the entry p
 
 ###Create Estimate Task
 
-![Sequence Diagram -- CreateEstimationProject](.\images\detailed_design\Sequence Diagram -- CreateEstimationProject.png)
+![Sequence Diagram -- CreateEstimationProject](.\images\detailed_design\Sequence_Diagram_CreateEstimationProject.png)
 
 When a user sends a request to create an estimate task through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it is logged on, it further determines whether it is an administrator. 
 
@@ -16,7 +16,7 @@ When confirming that the sending request is a regular user, controller assigns t
 
 ###Add Project Description 
 
-![Sequence Diagram -- addDescription](.\images\detailed_design\Sequence Diagram -- addDescription.png)
+![Sequence Diagram -- addDescription](.\images\detailed_design\Sequence_Diagram_addDescription.png)
 
 When a user sends a request to add a project description through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it is logged in, it is further judged as an administrator. 
 
@@ -24,7 +24,7 @@ When confirming that the request is sent to a regular user, controller will assi
 
 ### Functional decomposition
 
-![Sequence Diagram -- FictionDiv](.\images\detailed_design\Sequence Diagram -- FictionDiv.png)
+![Sequence Diagram -- FictionDiv](.\images\detailed_design\Sequence_Diagram_FictionDiv.png)
 
 When a user sends a request to add a function decomposition through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator. 
 
@@ -32,7 +32,7 @@ When confirming that the request is sent to a regular user, controller will assi
 
 ### Add Adjustment factor
 
-![Sequence Diagram -- addVAF](.\images\detailed_design\Sequence Diagram -- addVAF.png)
+![Sequence Diagram -- addVAF](.\images\detailed_design\Sequence_Diagram_addVAF.png)
 
 When a user sends a request to add an adjustment factor through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator. 
 
@@ -40,7 +40,7 @@ When confirming that a regular user is sending the request, controller assigns t
 
 ###Update Estimate Data
 
-![Sequence Diagram -- updateResult](.\images\detailed_design\Sequence Diagram -- updateResult.png)
+![Sequence Diagram -- updateResult](.\images\detailed_design\Sequence_Diagram_updateResult.png)
 
 When a user sends a request to update the estimated data through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator. 
 
@@ -48,7 +48,7 @@ When the administrator is confirmed to send the request, controller assigns the 
 
 ### Get Estimation Report
 
-![Sequence Diagram -- GetReport](.\images\detailed_design\Sequence Diagram -- GetReport.png)
+![Sequence Diagram -- GetReport](.\images\detailed_design\Sequence_Diagram_GetReport.png)
 
 When a user sends a request to obtain an estimate report through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it has landed, it is further judged as an administrator.
 
@@ -64,7 +64,7 @@ Function point analysis is a scale estimation method based on system function in
 
 ### algorithm framework (flowchart of pseudocde)
 
-![屏幕快照 2018-01-18 下午9.35.22](images/detailed_design/屏幕快照 2018-01-18 下午9.35.22.png)
+![屏幕快照 2018-01-18 下午9.35.22](images/detailed_design/屏幕快照_2018-01-18_下午9.35.22.png)
 
 ### Key Steps
 
@@ -123,7 +123,7 @@ FP=[(UFPB+ADD+CHGA)-(CHGB+DEL)]*VAFA
 
 Here is the total class diagram of our project.
 
-![class](images/detailed_design/Class Diagram.png)
+![class](images/detailed_design/Class_Diagram.png)
 
 Our class is divided into four levels, the bottom is an entity class, the second layer is the data access classes, and the third layer is the business logic classes, the top layer is the controller class.
 

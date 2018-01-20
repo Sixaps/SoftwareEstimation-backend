@@ -10,13 +10,13 @@ The UI design of the project
 
 This part is for viewing estimate tasks. Here you can see the basic information of all the estimated projects for that user.
 
-![屏幕快照 2018-01-18 下午7.02.33](images/high-level_design/屏幕快照 2018-01-18 下午7.02.33.png)
+![屏幕快照 2018-01-18 下午7.02.33](images/high-level_design/屏幕快照_2018-01-18_下午7.02.33.png)
 
 You can search for projects based on status, time, etc.
 
-![屏幕快照 2018-01-18 下午7.03.32](images/high-level_design/屏幕快照 2018-01-18 下午7.03.32.png)
+![屏幕快照 2018-01-18 下午7.03.32](images/high-level_design/屏幕快照_2018-01-18_下午7.03.32.png)
 
-![屏幕快照 2018-01-18 下午7.04.23](images/high-level_design/屏幕快照 2018-01-18 下午7.04.23.png)
+![屏幕快照 2018-01-18 下午7.04.23](images/high-level_design/屏幕快照_2018-01-18_下午7.04.23.png)
 
 
 
@@ -24,29 +24,29 @@ You can search for projects based on status, time, etc.
 
 Fill in the project name, Introduction and other basic project information.
 
-![屏幕快照 2018-01-18 下午7.05.59](images/high-level_design/屏幕快照 2018-01-18 下午7.05.59.png)
+![屏幕快照 2018-01-18 下午7.05.59](images/high-level_design/屏幕快照_2018-01-18_下午7.05.59.png)
 
 #### Create Estimation-Functional Decomposition
 
 Describe the basic structure of a project.
 
-![屏幕快照 2018-01-18 下午8.19.35](images/high-level_design/屏幕快照 2018-01-18 下午8.19.35.png)
+![屏幕快照 2018-01-18 下午8.19.35](images/high-level_design/屏幕快照_2018-01-18_下午8.19.35.png)
 
 Fill the ILF and EIF tables. Then write the steps of "login".
 
-![屏幕快照 2018-01-18 下午8.19.44](images/high-level_design/屏幕快照 2018-01-18 下午8.19.44.png)
+![屏幕快照 2018-01-18 下午8.19.44](images/high-level_design/屏幕快照_2018-01-18_下午8.19.44.png)
 
 Detail each step, choose the ILFs and EIFs, then choose the data fields for each file.
 
-![屏幕快照 2018-01-18 下午7.31.21](images/high-level_design/屏幕快照 2018-01-18 下午7.31.21.png)
+![屏幕快照 2018-01-18 下午7.31.21](images/high-level_design/屏幕快照_2018-01-18_下午7.31.21.png)
 
 #### Create Estimation-Adjustment Factor
 
 Select adjustment factors for the project.
 
-![屏幕快照 2018-01-18 下午7.32.33](images/high-level_design/屏幕快照 2018-01-18 下午7.32.33.png)
+![屏幕快照 2018-01-18 下午7.32.33](images/high-level_design/屏幕快照_2018-01-18_下午7.32.33.png)
 
-![屏幕快照 2018-01-18 下午7.33.02](images/high-level_design/屏幕快照 2018-01-18 下午7.33.02.png)
+![屏幕快照 2018-01-18 下午7.33.02](images/high-level_design/屏幕快照_2018-01-18_下午7.33.02.png)
 
 
 
@@ -56,35 +56,35 @@ Select adjustment factors for the project.
 
 This part is for viewing estimate tasks. Here you can see the basic information of all the estimated projects for that user.
 
-![屏幕快照 2018-01-18 下午8.27.37](images/high-level_design/屏幕快照 2018-01-18 下午8.27.37.png)
+![屏幕快照 2018-01-18 下午8.27.37](images/high-level_design/屏幕快照_2018-01-18_下午8.27.37.png)
 
 #### Functional Decomposition
 
 Describe the basic structure of a project.
 
-![屏幕快照 2018-01-18 下午8.28.36](images/high-level_design/屏幕快照 2018-01-18 下午8.28.36.png)
+![屏幕快照 2018-01-18 下午8.28.36](images/high-level_design/屏幕快照_2018-01-18_下午8.28.36.png)
 
-![屏幕快照 2018-01-18 下午8.28.46](images/high-level_design/屏幕快照 2018-01-18 下午8.28.46.png)
+![屏幕快照 2018-01-18 下午8.28.46](images/high-level_design/屏幕快照_2018-01-18_下午8.28.46.png)
 
 #### View Adjustment Factor
 
 View adjustment factors for the project.
 
-![屏幕快照 2018-01-18 下午8.28.55](images/high-level_design/屏幕快照 2018-01-18 下午8.28.55.png)
+![屏幕快照 2018-01-18 下午8.28.55](images/high-level_design/屏幕快照_2018-01-18_下午8.28.55.png)
 
 #### Edit Adjustment Factor
 
 Edit adjustment factors for the project.
 
-![屏幕快照 2018-01-18 下午8.29.02](images/high-level_design/屏幕快照 2018-01-18 下午8.29.02.png)
+![屏幕快照 2018-01-18 下午8.29.02](images/high-level_design/屏幕快照_2018-01-18_下午8.29.02.png)
 
-![屏幕快照 2018-01-18 下午8.29.31](images/high-level_design/屏幕快照 2018-01-18 下午8.29.31.png)
+![屏幕快照 2018-01-18 下午8.29.31](images/high-level_design/屏幕快照_2018-01-18_下午8.29.31.png)
 
 ### View The Report
 
-![屏幕快照 2018-01-19 下午8.19.45](images/high-level_design/屏幕快照 2018-01-19 下午8.19.45.png)
+![屏幕快照 2018-01-19 下午8.19.45](images/high-level_design/屏幕快照_2018-01-19_下午8.19.45.png)
 
-![屏幕快照 2018-01-19 下午8.19.53](images/high-level_design/屏幕快照 2018-01-19 下午8.19.53.png)
+![屏幕快照 2018-01-19 下午8.19.53](images/high-level_design/屏幕快照_2018-01-19_下午8.19.53.png)
 
 
 
@@ -92,7 +92,7 @@ Edit adjustment factors for the project.
 
 The business architecture outline the key components in each layers of the project systems. Here is our Business Architecture:
 
-![Business Architecture Diagram](.\images\high-level_design\Business Architecture Diagram.png)
+![Business Architecture Diagram](.\images\high-level_design\Business_Architecture_Diagram.png)
 
 In the view layer,  we have two roles in the system, which can see different pages and have different functions. Because the whole estimation system is a subsystem of the Crowdsourcing System, and the login/logout function is realized by them. What we need to do is just the process of estimation.
 
@@ -108,7 +108,7 @@ In the Model Layer, we need to store the data of all the requirements and the ma
 
 The architecture of the technology stacks (coding language, frameworks, libraries, styles, etc) used in the project. Here is our Technology Architecture:
 
-![Technology Architecture Diagram](.\images\high-level_design\Technology Architecture Diagram.png)
+![Technology Architecture Diagram](.\images\high-level_design\Technology_Architecture_Diagram.png)
 
 In the UI Layer, we use Vuejs as our front end frame and build the front end on the Nodejs.
 
@@ -120,7 +120,7 @@ In the Persistence Layer, we use MongoDB for basic data storage, while using Red
 
 Deployment Topology shows how the whole project is deployed in the physical environment, including servers, VMs/containers, networks, key components, etc. An overview picture is required to show the topology. Here is our Deployment Topology:
 
-![Deployment Topology Diagram](.\images\high-level_design\Deployment Topology Diagram.png)
+![Deployment Topology Diagram](.\images\high-level_design\Deployment_Topology_Diagram.png)
 
 We use the method of front and rear separation to deploy, at the same time, the back end of our estimation system and the back end of the crowdsourcing system are respectively deployed on two computers, respectively interacting with different databases, but together for the same front-end service. This depends on spring's support for cross-domain access, and the low coupling between the estimate system and the crowdsourcing system.
 
@@ -132,7 +132,7 @@ An Entity-Relation Diagram is required to show the concepts in the project and t
 
 Here is our E-R diagram:
 
-![ER Diagram](.\images\high-level_design\ER Diagram.png)
+![ER Diagram](.\images\high-level_design\ER_Diagram.png)
 
 #### Relationship
 
