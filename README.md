@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project is used as the document template of X-Lab, the document template includes README, Requirement Sepcification, Outline Design Specification and Detailed Design Specification. All document templates are writted down by markdown, and you can wirte the document either in Chinese or English.
+The software cost estimating platform will serve as the estimating sub module of Tongji Open source community crowdsourcing platform, and provide the online software project cost estimating service for the vast number of developers, which fills the blank of the domestic online software cost estimating platform. When the project Publisher publishes the project, it can enter the software cost estimating platform, through the parameter input, carries on the software cost estimation to this project, in order to conveniently and accurately determine the project price, the workload and so on. The platform is designed to help project publishers to accurately estimate the cost of software projects, workload estimates, to prevent the project due to the lack of software cost estimates, resulting in uncontrolled software projects.
 
 ## How to Use It
 
