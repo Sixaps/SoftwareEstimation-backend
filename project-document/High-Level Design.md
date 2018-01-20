@@ -92,7 +92,7 @@ Edit adjustment factors for the project.
 
 The business architecture outline the key components in each layers of the project systems. Here is our Business Architecture:
 
-![Business Architecture Diagram](/images/high-level_design/Business_Architecture_Diagram.png)
+![Business Architecture Diagram](images/high-level_design/Business_Architecture_Diagram.png)
 
 In the view layer,  we have two roles in the system, which can see different pages and have different functions. Because the whole estimation system is a subsystem of the Crowdsourcing System, and the login/logout function is realized by them. What we need to do is just the process of estimation.
 
