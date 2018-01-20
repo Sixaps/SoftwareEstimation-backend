@@ -16,7 +16,7 @@ When confirming that the sending request is a regular user, controller assigns t
 
 ### Add Project Description 
 
-![Sequence Diagram -- addDescription](images/detailed_design/Sequence Diagram -- addDescription.png)
+![Sequence Diagram -- addDescription]("images/detailed_design/Sequence Diagram -- addDescription.png")
 
 When a user sends a request to add a project description through the front-end interface, the backend controller first determines whether it is logged in, and when it is determined that it is logged in, it is further judged as an administrator. 
 
