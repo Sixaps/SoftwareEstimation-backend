@@ -33,10 +33,10 @@ public class ResultService {
 	public void calFileComplexity(EstimationFileData eFD) {
 		int detNum = eFD.getDETNum();
 		if(eFD.getFileType().equals("ILF")) {
-			UFPLevel = UFPLevel1;
+			UFPLevel = UFPLevel2;
 		}
 		else if(eFD.getFileType().equals("EIF")) {
-			UFPLevel = UFPLevel2;
+			UFPLevel = UFPLevel1;
 		}
 
 		if(detNum >= 1&&detNum <= 19) {
