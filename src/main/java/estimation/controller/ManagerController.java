@@ -5,6 +5,7 @@ import estimation.service.ManagerService;
 import estimation.service.RequirementService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,10 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/estimation")
 public class ManagerController {
+
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     ManagerService managerService;
@@ -41,8 +46,6 @@ public class ManagerController {
         catch(Exception e){
             result.put("code", 500);
         }
-
-
         return result;
     }
 
