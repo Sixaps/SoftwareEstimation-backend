@@ -103,4 +103,26 @@ public class ManagerController {
         return result;
     }
 
+    @PostMapping(value = "/login")
+    public Object login(@RequestBody JSONObject jsonObject){
+        Map<String, Object> result = new HashMap<>();
+        try{
+            String username = jsonObject.getString("username");
+            String password = jsonObject.getString("password");
+            stringRedisTemplate.opsForValue().set(password+username,username);
+            result.put("status", 200);
+            Map<String, Object> myMap = new HashMap<>();
+            myMap.put("tokenid",password+username);
+            myMap.put("realname","");
+            myMap.put("mobile","");
+            myMap.put("email","");
+            result.put("result",myMap);
+        }
+        catch(Exception e){
+            result.put("status", 500);
+        }
+        return result;
+    }
+
+
 }

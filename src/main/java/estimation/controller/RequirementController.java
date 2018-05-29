@@ -64,7 +64,6 @@ public class RequirementController {
         String userId = requirementService.getAccount(request);
         if(!requirementService.checkIdentity(id, userId))
             return;
-
         this.requirementService.deleteRequirement(id);
     }
     
