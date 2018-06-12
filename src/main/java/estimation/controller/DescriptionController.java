@@ -29,10 +29,16 @@ public class DescriptionController {
 
     //添加描述信息或更新现有的描述信息
     @RequestMapping(value = "/addDescription/{id}",method = RequestMethod.POST)
-    public void addDescription(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
-        String userId = requirementService.getAccount(request);
+    public Object addDescription(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
+        String userId = "@";
+        try {
+            userId = requirementService.getAccount(request);
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            return -1;
+        }
         if(!requirementService.checkIdentity(id, userId))
-            return;
+            return -2;
 
         String projectName = jsonObject.getString("projectName");
         String projectDescription = jsonObject.getString("projectDescription");
@@ -46,5 +52,6 @@ public class DescriptionController {
         description.setProjectContact(projectContact);
         description.setEstimationMethod(estimationMethod);
         descriptionService.add(id, description);
+        return 0;
     }
 }

@@ -35,6 +35,7 @@ public class ManagerController {
     @GetMapping(value = "/identity")
     public Object judgeIdentity(HttpServletRequest request){
         Map<String, Object> result = new HashMap<>();
+        System.out.println(request);
         try{
             String username = requirementService.getAccount(request);
             if(username != null){
