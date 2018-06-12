@@ -33,7 +33,7 @@ public class DescriptionController {
         String userId = "@";
         try {
             userId = requirementService.getAccount(request);
-        } catch (NullPointerException e){
+        } catch (Exception e){
             e.printStackTrace();
             return -1;
         }
