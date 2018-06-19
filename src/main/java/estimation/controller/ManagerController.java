@@ -46,6 +46,7 @@ public class ManagerController {
         }
         catch(Exception e){
             result.put("code", 500);
+            e.printStackTrace();
         }
         return result;
     }
