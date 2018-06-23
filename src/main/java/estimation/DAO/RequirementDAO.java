@@ -50,6 +50,9 @@ public class RequirementDAO {
             Query query = new Query(Criteria.where("_id").is(id));
             Update update = Update.update("remark", remark);
             update.set("state", state);
+            if(null == mongoTemplate.findOne(new Query(Criteria.where("_id").is(id)), Requirement.class)){
+                throw new Exception();
+            }
             mongoTemplate.updateFirst(query, update, Requirement.class);
         } catch(Exception e){
             e.printStackTrace();
