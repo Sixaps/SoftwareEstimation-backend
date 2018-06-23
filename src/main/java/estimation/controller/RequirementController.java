@@ -89,14 +89,19 @@ public class RequirementController {
         }
         String state = jsonObject.getString("state");
         String[] trueState = {"待审核","待修改","完成","估算中"};
+        Boolean flag = false;
         for (String str: trueState) {
             if(str.equals(state)){
-                status = HttpStatus.INTERNAL_SERVER_ERROR;
-                return new ResponseEntity<Object>("",status);
+                flag = true;
+                break;
             }
         }
+        if(!flag) {
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return new ResponseEntity<Object>("", status);
+        }
     	String remark = jsonObject.getString("remark");
-    	if(this.requirementService.changeState(id, state, remark)){
+    	if(!this.requirementService.changeState(id, state, remark)){
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
         return new ResponseEntity<Object>("",status);
