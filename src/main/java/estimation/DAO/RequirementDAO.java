@@ -45,11 +45,17 @@ public class RequirementDAO {
         mongoTemplate.remove(query, Requirement.class, "requirement");
     }
 
-    public void changeStateAndRemark(String id, String state, String remark) {
-        Query query = new Query(Criteria.where("_id").is(id));
-        Update update = Update.update("remark", remark);
-        update.set("state", state);
-        mongoTemplate.upsert(query, update, Requirement.class);
+    public Boolean changeStateAndRemark(String id, String state, String remark) {
+        try {
+            Query query = new Query(Criteria.where("_id").is(id));
+            Update update = Update.update("remark", remark);
+            update.set("state", state);
+            mongoTemplate.updateFirst(query, update, Requirement.class);
+        } catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     public void changeStatus(String id, String status){

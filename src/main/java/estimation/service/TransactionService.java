@@ -24,18 +24,13 @@ public class TransactionService {
 	@Autowired
 	private RequirementDAO requirementDAO;
 
-	public void add(String id, Transaction transaction) {
-		this.transactionDAO.add(id, transaction);
-	}
-
-	public void deleteArray(String id, String key) {
-		this.transactionDAO.deleteArray(id, key);
-	}
-
-	//读取某需求所有的transaction信息
-	public List<Transaction> getAllTransactions(String id){
-		Requirement requirement = this.requirementDAO.getRequirement(id);
-		return requirement.getTransactions();
+	public boolean add(String id, Transaction transaction) {
+		try {
+			return this.transactionDAO.add(id, transaction);
+		}catch (Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public void buildTree(Folder parent, JSONObject jsonObject) {
@@ -70,54 +65,54 @@ public class TransactionService {
 		this.transactionDAO.addTree(id, tree);
 	}
 
-	public Folder getTree(String id) {
-		return transactionDAO.getTree(id);
-	}
-
 	public void addFile(String id, String name, String tId) {
-		Transaction transaction = new Transaction();
+		try {
+			Transaction transaction = new Transaction();
 
-		List<Step> steps = new ArrayList<>();
+			List<Step> steps = new ArrayList<>();
 
-		Step step = new Step();
+			Step step = new Step();
 
-		List<EIFDataSet> eifDataSets = new ArrayList<>();
-		List<ILFDataSet> ilfDataSets = new ArrayList<>();
+			List<EIFDataSet> eifDataSets = new ArrayList<>();
+			List<ILFDataSet> ilfDataSets = new ArrayList<>();
 
-		EIFDataSet eifDataSet = new EIFDataSet();
-		ILFDataSet ilfDataSet = new ILFDataSet();
-		List<String> dets = new ArrayList<>();
-		dets.add("");
-		eifDataSet.setExternalInterfaceFileName("");
-		ilfDataSet.setInnerlogicalFileName("");
-		eifDataSet.setDET(dets);
-		ilfDataSet.setDET(dets);
-		eifDataSets.add(eifDataSet);
-		ilfDataSets.add(ilfDataSet);
+			EIFDataSet eifDataSet = new EIFDataSet();
+			ILFDataSet ilfDataSet = new ILFDataSet();
+			List<String> dets = new ArrayList<>();
+			dets.add("");
+			eifDataSet.setExternalInterfaceFileName("");
+			ilfDataSet.setInnerlogicalFileName("");
+			eifDataSet.setDET(dets);
+			ilfDataSet.setDET(dets);
+			eifDataSets.add(eifDataSet);
+			ilfDataSets.add(ilfDataSet);
 
-		step.setStepName("");
-		step.setEifDataSets(eifDataSets);
-		step.setIlfDataSets(ilfDataSets);
-		steps.add(step);
-		
-        List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<>();
-        EstimationTransactionData estimationTransactionData = new EstimationTransactionData();
+			step.setStepName("");
+			step.setEifDataSets(eifDataSets);
+			step.setIlfDataSets(ilfDataSets);
+			steps.add(step);
 
-		estimationTransactionData.setDET("");
-        estimationTransactionData.setDETNum(0);
-        estimationTransactionData.setFileNum(0);
-        estimationTransactionData.setLogicalFile("");
-        estimationTransactionData.setTransactionType("");
-        estimationTransactionData.setName("");
+			List<EstimationTransactionData> estimationTransactionDatas = new ArrayList<>();
+			EstimationTransactionData estimationTransactionData = new EstimationTransactionData();
 
-        estimationTransactionDatas.add(estimationTransactionData);
-        
-        transaction.setEstimationTransactionDatas(estimationTransactionDatas);
-		transaction.setId(tId);
-		transaction.setSteps(steps);
-		transaction.setTransactionName(name);
+			estimationTransactionData.setDET("");
+			estimationTransactionData.setDETNum(0);
+			estimationTransactionData.setFileNum(0);
+			estimationTransactionData.setLogicalFile("");
+			estimationTransactionData.setTransactionType("");
+			estimationTransactionData.setName("");
 
-		this.transactionDAO.add(id, transaction);
+			estimationTransactionDatas.add(estimationTransactionData);
+
+			transaction.setEstimationTransactionDatas(estimationTransactionDatas);
+			transaction.setId(tId);
+			transaction.setSteps(steps);
+			transaction.setTransactionName(name);
+
+			this.transactionDAO.add(id, transaction);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public Transaction geTransaction(String id, String tId) {
@@ -128,8 +123,8 @@ public class TransactionService {
 		this.transactionDAO.deleteTransaction(id, tId);
 	}
 
-	public void reName(String id, String tId, String tName) {
-		this.transactionDAO.reName(id, tId, tName);
+	public Boolean reName(String id, String tId, String tName) {
+		return this.transactionDAO.reName(id, tId, tName);
 	}
 
 	public void getAllTransactionId(Folder tree, List<String> tIds) {
@@ -164,6 +159,10 @@ public class TransactionService {
 	}
 
 	public void updateETDs(String id,String tId, List<EstimationTransactionData> eTDs){
-		transactionDAO.updateETDs(id,tId,eTDs);
+		try {
+			transactionDAO.updateETDs(id, tId, eTDs);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 }

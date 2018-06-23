@@ -27,7 +27,12 @@ public class ResultService {
 	private VAFState vafState = new VAFState();
 
 	public Transaction updateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
-		return resultDAO.UpdateResult(id, tId, eFDs, eTDs);
+		try {
+			return resultDAO.UpdateResult(id, tId, eFDs, eTDs);
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void calFileComplexity(EstimationFileData eFD) {

@@ -104,8 +104,8 @@ public class RequirementService {
     	this.requirementDAO.deleteRequirement(id);
     }
     
-    public void changeState(String id, String state, String remark) {
-    	this.requirementDAO.changeStateAndRemark(id, state, remark);
+    public Boolean changeState(String id, String state, String remark) {
+    	return this.requirementDAO.changeStateAndRemark(id, state, remark);
     }
 
     public String getAccount(HttpServletRequest request)

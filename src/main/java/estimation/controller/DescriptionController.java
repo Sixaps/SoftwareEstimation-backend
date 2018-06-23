@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by xuawai on 03/05/2017.
@@ -31,6 +33,7 @@ public class DescriptionController {
     @RequestMapping(value = "/addDescription/{id}",method = RequestMethod.POST)
     public Object addDescription(HttpServletRequest request, @RequestBody JSONObject jsonObject, @PathVariable String id) {
         String userId = "@";
+        Map<String,Object> result = new HashMap<>();
         try {
             userId = requirementService.getAccount(request);
         } catch (Exception e){
@@ -40,18 +43,8 @@ public class DescriptionController {
         if(!requirementService.checkIdentity(id, userId))
             return -2;
 
-        String projectName = jsonObject.getString("projectName");
-        String projectDescription = jsonObject.getString("projectDescription");
-        String projectLeader = jsonObject.getString("projectLeader");
-        String projectContact = jsonObject.getString("projectContact");
-        String estimationMethod = jsonObject.getString("estimationMethod");
-        Description description = new Description();
-        description.setProjectName(projectName);
-        description.setProjectDescription(projectDescription);
-        description.setProjectLeader(projectLeader);
-        description.setProjectContact(projectContact);
-        description.setEstimationMethod(estimationMethod);
-        descriptionService.add(id, description);
-        return 0;
+
+        result.put("code",descriptionService.add(id, jsonObject)? 200:500);
+        return result;
     }
 }

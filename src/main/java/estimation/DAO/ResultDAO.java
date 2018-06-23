@@ -26,7 +26,7 @@ public class ResultDAO {
 	@Autowired
     private MongoTemplate mongoTemplate;
 	
-	public Transaction UpdateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) {
+	public Transaction UpdateResult(String id, String tId, List<EstimationFileData> eFDs, List<EstimationTransactionData> eTDs) throws Exception{
 		Transaction transaction = transactionDAO.geTransaction(id, tId);
 		if(transaction  != null){
 		requirementDAO.updateTableOfeFD(id, eFDs);

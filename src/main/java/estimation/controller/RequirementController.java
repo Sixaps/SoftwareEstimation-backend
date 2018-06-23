@@ -7,6 +7,8 @@ import estimation.service.RequirementService;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +31,12 @@ public class RequirementController {
 
     //增加一个新需求
     @RequestMapping(value = "/addRequirement",method = RequestMethod.GET)
-    public String addRequirement(HttpServletRequest request) {
+    public Object addRequirement(HttpServletRequest request) {
         String userId = requirementService.getAccount(request);
+        if(userId == null){
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return new ResponseEntity<String>("",status);
+        }
         return requirementService.add(userId);
     }
 
@@ -45,17 +51,23 @@ public class RequirementController {
 
     //返回所有记录
     @RequestMapping(value = "/getAllRequirementsByUser",method = RequestMethod.GET)
-    public List<Requirement> getAllRequirementsByUser(HttpServletRequest request) {
+    public Object getAllRequirementsByUser(HttpServletRequest request) {
         String userId = requirementService.getAccount(request);
+        if(userId == null){
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return new ResponseEntity<Object>("",status);
+        }
         return requirementService.getAllRequirementsByUser(userId);
     }
 
     //返回所有记录
     @RequestMapping(value = "/getAllRequirements",method = RequestMethod.GET)
-    public List<Requirement> getAllRequirements(HttpServletRequest request) {
+    public Object getAllRequirements(HttpServletRequest request) {
         String userId = requirementService.getAccount(request);
-        if(!managerService.judgeIdentity(userId))
-            return null;
+        if(!managerService.judgeIdentity(userId)) {
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return new ResponseEntity<Object>("",status);
+        }
         return requirementService.getAllRequirements();
     }
 
@@ -68,14 +80,25 @@ public class RequirementController {
     }
     
     @RequestMapping(value = "/changeState/{id}", method = RequestMethod.POST)
-    public void changeState(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
+    public Object changeState(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
+        HttpStatus status = HttpStatus.ACCEPTED;
         String userId = requirementService.getAccount(request);
-        if(!managerService.judgeIdentity(userId))
-            return;
-
+        if(!managerService.judgeIdentity(userId)) {
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return new ResponseEntity<Object>("", status);
+        }
         String state = jsonObject.getString("state");
+        String[] trueState = {"待审核","待修改","完成","估算中"};
+        for (String str: trueState) {
+            if(str.equals(state)){
+                status = HttpStatus.INTERNAL_SERVER_ERROR;
+                return new ResponseEntity<Object>("",status);
+            }
+        }
     	String remark = jsonObject.getString("remark");
-    	this.requirementService.changeState(id, state, remark);
+    	if(this.requirementService.changeState(id, state, remark)){
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<Object>("",status);
     }
-
 }

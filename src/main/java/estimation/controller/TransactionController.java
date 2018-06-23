@@ -8,6 +8,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -232,12 +234,21 @@ public class TransactionController {
     }
     
     @RequestMapping(value = "/TransactionReName/{id}", method = RequestMethod.POST)
-    public void TransactionReName(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
+    public Object TransactionReName(HttpServletRequest request, @RequestBody JSONObject jsonObject,@PathVariable String id) {
         String userId = requirementService.getAccount(request);
-        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId))
-            return;
+        HttpStatus status = HttpStatus.ACCEPTED;
+        if(!managerService.judgeIdentity(userId) && !requirementService.checkIdentity(id, userId)){
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+            return new ResponseEntity<String>("",status);
+        }
     	String tId = jsonObject.getString("tId");
     	String tName = jsonObject.getString("tName");
-    	transactionService.reName(id, tId, tName);
+    	if(tName.equals("")){
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+    	if(!transactionService.reName(id, tId, tName)){
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<String>("",status);
     }
 }

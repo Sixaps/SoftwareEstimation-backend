@@ -23,20 +23,12 @@ public class TransactionDAO {
     private MongoTemplate mongoTemplate;
 
     //向数组中增添一个对象，如果数组不存在，将被创建
-    public void add(String id, Transaction transaction) {
+    public boolean add(String id, Transaction transaction) throws Exception{
         Query query = new Query(Criteria.where("_id").is(id));
         Update update = new Update();
         update.addToSet("transactions", transaction);
         mongoTemplate.upsert(query, update, Requirement.class);
-    }
-
-    //这个函数可以提到基类中去
-    //删除以key为键的数组对象，其中，键也会被删除
-    public void deleteArray(String id, String key) {
-        Query query = new Query(Criteria.where("_id").is(id));
-        Update update = new Update();
-        update.unset(key);
-        mongoTemplate.upsert(query, update, Requirement.class);
+        return true;
     }
 
     public void addTree(String id, Folder tree) {
@@ -101,27 +93,33 @@ public class TransactionDAO {
         mongoTemplate.upsert(query, update, Requirement.class);
     }
 
-    public void reName(String id, String tId, String tName) {
+    public Boolean reName(String id, String tId, String tName) {
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class);
         List<Transaction> transactions = requirement.getTransactions();
         int i;
+        boolean flag = false;
         for (i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getId().equals(tId)) {
                 transactions.get(i).setTransactionName(tName);
+                flag = true;
             }
         }
-        Update update = Update.update("transactions", transactions);
-        mongoTemplate.upsert(query, update, Requirement.class);
+        if(flag) {
+            Update update = Update.update("transactions", transactions);
+            mongoTemplate.upsert(query, update, Requirement.class);
+        }
+        return flag;
     }
 
-    public void updateETDs(String id, String tId, List<EstimationTransactionData> eTDs){
+    public boolean updateETDs(String id, String tId, List<EstimationTransactionData> eTDs) throws Exception{
         Transaction transaction = geTransaction(id, tId);
         if(transaction  != null){
             transaction.setEstimationTransactionDatas(eTDs);
             deleteTransaction(id,tId);
             add(id, transaction);
         }
+        return true;
     }
 
 

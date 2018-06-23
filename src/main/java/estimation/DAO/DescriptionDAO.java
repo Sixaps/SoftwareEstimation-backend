@@ -17,7 +17,7 @@ public class DescriptionDAO {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void add(String id, Description description) {
+    public boolean add(String id, Description description) throws Exception {
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class, "requirement");
         Update update = Update.update("description.$.projectName", description.getProjectName()).set("description.$.projectDescription", description.getProjectDescription());
@@ -25,5 +25,6 @@ public class DescriptionDAO {
         update.set("description.$.projectContact", description.getProjectContact());
         update.set("description.$.estimationMethod", description.getEstimationMethod());
         mongoTemplate.upsert(query, update, Requirement.class);
+        return true;
     }
 }
