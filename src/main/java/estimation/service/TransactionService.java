@@ -24,16 +24,22 @@ public class TransactionService {
 	@Autowired
 	private RequirementDAO requirementDAO;
 
+	TransactionService(){ }
+
+	TransactionService(TransactionDAO transactionDAO){
+	    this.transactionDAO = transactionDAO;
+    }
+
 	public boolean add(String id, Transaction transaction) {
 		try {
-			return this.transactionDAO.add(id, transaction);
+			return transactionDAO.add(id, transaction);
 		}catch (Exception e){
 			e.printStackTrace();
 			return false;
 		}
 	}
 
-	public void buildTree(Folder parent, JSONObject jsonObject) {
+	public boolean buildTree(Folder parent, JSONObject jsonObject) {
 		JSONArray childFiles = jsonObject.getJSONArray("childFiles");
 		JSONObject childFile;
 		File file;
@@ -59,13 +65,15 @@ public class TransactionService {
 			folders.add(folder);
 		}
 		parent.setChildFolders(folders);
+		return true;
 	}
 
-	public void addTree(String id, Folder tree) {
+	public boolean addTree(String id, Folder tree) {
 		this.transactionDAO.addTree(id, tree);
+		return true;
 	}
 
-	public void addFile(String id, String name, String tId) {
+	public boolean addFile(String id, String name, String tId) {
 		try {
 			Transaction transaction = new Transaction();
 
@@ -112,7 +120,9 @@ public class TransactionService {
 			this.transactionDAO.add(id, transaction);
 		}catch (Exception e){
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 	public Transaction geTransaction(String id, String tId) {

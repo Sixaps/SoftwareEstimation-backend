@@ -11,8 +11,9 @@ import org.mockito.Mock;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.Iterator;
 
 /**
  * DescriptionService Tester.
@@ -26,11 +27,18 @@ public class DescriptionServiceTest {
     @Mock
     private DescriptionDAO descriptionDAO;
     private DescriptionService descriptionService;
+    private Description description;
 
     @Before
     public void before() throws Exception {
         MockitoAnnotations.initMocks(this);
         descriptionService = new DescriptionService(descriptionDAO);
+        description = new Description();
+        description.setProjectName("projectName");
+        description.setProjectDescription("projectDescription");
+        description.setProjectLeader("projectLeader");
+        description.setProjectContact("projectContact");
+        description.setEstimationMethod("estimationMethod");
     }
 
     @After
@@ -41,13 +49,7 @@ public class DescriptionServiceTest {
      * Method: add(String id, Description description)
      */
     @Test
-    public void testAdd() throws Exception {
-        Description description = new Description();
-        description.setProjectName("projectName");
-        description.setProjectDescription("projectDescription");
-        description.setProjectLeader("projectLeader");
-        description.setProjectContact("projectContact");
-        description.setEstimationMethod("estimationMethod");
+    public void testAddTrue() throws Exception {
         JSONObject jsonObject = JSONObject.fromObject(description);
 
         when(descriptionDAO.add(any(String.class),any(Description.class))).thenReturn(true);
@@ -57,12 +59,6 @@ public class DescriptionServiceTest {
 
     @Test
     public void testAddException() throws Exception {
-        Description description = new Description();
-        description.setProjectName("projectName");
-        description.setProjectDescription("projectDescription");
-        description.setProjectLeader("projectLeader");
-        description.setProjectContact("projectContact");
-        description.setEstimationMethod("estimationMethod");
         JSONObject jsonObject = JSONObject.fromObject(description);
 
         when(descriptionDAO.add(any(String.class),any(Description.class))).thenThrow(new Exception());
@@ -72,14 +68,11 @@ public class DescriptionServiceTest {
 
     @Test
     public void testAddWrongInput() throws Exception {
-        Description description = new Description();
-        description.setProjectName("projectName");
-        description.setProjectLeader("projectLeader");
-        description.setProjectContact("projectContact");
-        description.setEstimationMethod("estimationMethod");
         JSONObject jsonObject = JSONObject.fromObject(description);
+        jsonObject.remove("projectDescription");
 
-        when(descriptionDAO.add("1",description)).thenThrow(new Exception());
+
+        when(descriptionDAO.add(any(String.class),any(Description.class))).thenReturn(true);//thenThrow(new Exception());
 
         assertFalse(descriptionService.add("1",jsonObject));
     }

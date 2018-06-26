@@ -31,10 +31,11 @@ public class TransactionDAO {
         return true;
     }
 
-    public void addTree(String id, Folder tree) {
+    public boolean addTree(String id, Folder tree) {
         Query query = new Query(Criteria.where("_id").is(id));
         Update update = Update.update("treeOfTransactions", tree);
         mongoTemplate.upsert(query, update, Requirement.class);
+        return true;
     }
 
     public void updateTransaction(String id, List<String> tIds) {
