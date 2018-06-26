@@ -14,12 +14,18 @@ public class VAFService {
     @Autowired
     private VAFDao vafDAO;
 
-    public void add(String id, VAF vaf) {
-        this.vafDAO.add(id, vaf);
+    public VAFService(){ }
+
+    public VAFService(VAFDao vafDao){
+        this.vafDAO = vafDao;
+    }
+
+    public boolean add(String id, VAF vaf) {
+        return this.vafDAO.add(id, vaf);
     }
     
-    public void change(String id,VAF vaf) {
-    	this.vafDAO.change(id, vaf);
+    public boolean change(String id,VAF vaf) {
+    	return this.vafDAO.change(id, vaf);
     }
 
 }

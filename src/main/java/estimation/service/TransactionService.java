@@ -24,9 +24,9 @@ public class TransactionService {
 	@Autowired
 	private RequirementDAO requirementDAO;
 
-	TransactionService(){ }
+	public TransactionService(){ }
 
-	TransactionService(TransactionDAO transactionDAO){
+	public TransactionService(TransactionDAO transactionDAO){
 	    this.transactionDAO = transactionDAO;
     }
 
