@@ -169,8 +169,7 @@ public class ResultService {
 		requirement.setUFP(ufp);
 		requirement.setAFP(afp);
 		requirement.setWorkCost(afp*Double.parseDouble(vaf.getProductivity())*Double.parseDouble(vaf.getCost())/8.0);
-		requirement.setWorkTime(afp*Double.parseDouble(requirement.getNewVAF().getProductivity())/(8.0*20.0));
-		
+		requirement.setWorkTime(afp*Double.parseDouble(requirement.getNewVAF().getProductivity())/(8.0));//*20.0
 		return requirement;
 	}
 	
