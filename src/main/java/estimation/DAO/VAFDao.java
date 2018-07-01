@@ -18,7 +18,7 @@ public class VAFDao {
     private MongoTemplate mongoTemplate;
 
     //向数组中增添一个对象，如果数组不存在，将被创建
-    public boolean add(String id, VAF vaf){
+    public boolean add(String id, VAF vaf) throws Exception{
         Query query = new Query(Criteria.where("_id").is(id));
         Update update = Update.update("originalVAF",vaf);
         update.set("newVAF", vaf);
@@ -26,7 +26,7 @@ public class VAFDao {
         return true;
     }
     
-    public boolean change(String id, VAF vaf) {
+    public boolean change(String id, VAF vaf) throws Exception{
     	Query query = new Query(Criteria.where("_id").is(id));
         Update update = Update.update("newVAF", vaf);
         mongoTemplate.upsert(query, update, Requirement.class);

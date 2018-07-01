@@ -21,11 +21,21 @@ public class VAFService {
     }
 
     public boolean add(String id, VAF vaf) {
-        return this.vafDAO.add(id, vaf);
+        try {
+            return this.vafDAO.add(id, vaf);
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
     
     public boolean change(String id,VAF vaf) {
-    	return this.vafDAO.change(id, vaf);
+        try {
+            return this.vafDAO.change(id, vaf);
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

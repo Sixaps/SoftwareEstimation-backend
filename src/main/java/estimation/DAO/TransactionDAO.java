@@ -31,7 +31,7 @@ public class TransactionDAO {
         return true;
     }
 
-    public boolean addTree(String id, Folder tree) {
+    public boolean addTree(String id, Folder tree) throws Exception{
         Query query = new Query(Criteria.where("_id").is(id));
         Update update = Update.update("treeOfTransactions", tree);
         mongoTemplate.upsert(query, update, Requirement.class);
@@ -61,7 +61,7 @@ public class TransactionDAO {
         mongoTemplate.upsert(query, update, Requirement.class);
     }
 
-    public Transaction geTransaction(String id, String tId) {
+    public Transaction geTransaction(String id, String tId) throws Exception{
         Query query = new Query(Criteria.where("_id").is(id));
         Requirement requirement = mongoTemplate.findOne(query, Requirement.class);
         Transaction transaction;
