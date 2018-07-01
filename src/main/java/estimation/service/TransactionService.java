@@ -32,6 +32,9 @@ public class TransactionService {
 
 	public boolean add(String id, Transaction transaction) {
 		try {
+			if(transaction == null || id == null){
+				return false;
+			}
 			return transactionDAO.add(id, transaction);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -40,41 +43,57 @@ public class TransactionService {
 	}
 
 	public boolean buildTree(Folder parent, JSONObject jsonObject) {
-		JSONArray childFiles = jsonObject.getJSONArray("childFiles");
-		JSONObject childFile;
-		File file;
-		List<File> files = new ArrayList<File>();
-		for(int i = 0; i < childFiles.size();i++) {
-			childFile = (JSONObject)childFiles.get(i);
-			file = new File();
-			file.setId(childFile.getString("id"));
-			file.setName(childFile.getString("name"));
-			files.add(file);
+		try {
+			JSONArray childFiles = jsonObject.getJSONArray("childFiles");
+			JSONObject childFile;
+			File file;
+			List<File> files = new ArrayList<File>();
+			for (int i = 0; i < childFiles.size(); i++) {
+				childFile = (JSONObject) childFiles.get(i);
+				file = new File();
+				file.setId(childFile.getString("id"));
+				file.setName(childFile.getString("name"));
+				files.add(file);
+			}
+			parent.setChildFiles(files);
+			JSONArray childFolders = jsonObject.getJSONArray("childFolders");
+			JSONObject childFolder;
+			Folder folder;
+			List<Folder> folders = new ArrayList<Folder>();
+			for (int i = 0; i < childFolders.size(); i++) {
+				childFolder = (JSONObject) childFolders.get(i);
+				folder = new Folder();
+				folder.setId(childFolder.getString("id"));
+				folder.setName(childFolder.getString("name"));
+				this.buildTree(folder, childFolder);
+				folders.add(folder);
+			}
+			parent.setChildFolders(folders);
+		} catch (Exception e){
+			e.printStackTrace();
+			return false;
 		}
-		parent.setChildFiles(files);
-		JSONArray childFolders = jsonObject.getJSONArray("childFolders");
-		JSONObject childFolder;
-		Folder folder;
-		List<Folder> folders = new ArrayList<Folder>();
-		for(int i = 0; i < childFolders.size(); i++) {
-			childFolder = (JSONObject)childFolders.get(i);
-			folder = new Folder();
-			folder.setId(childFolder.getString("id"));
-			folder.setName(childFolder.getString("name"));
-			this.buildTree(folder, childFolder);
-			folders.add(folder);
-		}
-		parent.setChildFolders(folders);
 		return true;
 	}
 
 	public boolean addTree(String id, Folder tree) {
-		this.transactionDAO.addTree(id, tree);
-		return true;
+		try {
+			if (id == null || tree == null) {
+				return false;
+			}
+			this.transactionDAO.addTree(id, tree);
+			return true;
+		} catch (Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean addFile(String id, String name, String tId) {
 		try {
+			if(id == null || name == null || tId ==null){
+				return false;
+			}
 			Transaction transaction = new Transaction();
 
 			List<Step> steps = new ArrayList<>();
@@ -126,7 +145,15 @@ public class TransactionService {
 	}
 
 	public Transaction geTransaction(String id, String tId) {
-		return transactionDAO.geTransaction(id, tId);
+		try {
+			if(id == null || tId ==null){
+				return null;
+			}
+			return transactionDAO.geTransaction(id, tId);
+		}catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void deleteTransaction(String id, String tId) {
