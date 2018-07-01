@@ -1,0 +1,3689 @@
+{
+	"info": {
+		"_postman_id": "4ab5a261-8a5e-44f0-9385-fd48db10daa1",
+		"name": "Interface",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getTree",
+			"description": "",
+			"item": [
+				{
+					"name": "getTree_no_requirement_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c79636df-dc85-4f83-b7fe-cf1a5aef3836",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getTree",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getTree"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTree_error_requirement_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "afecd44d-015f-46d1-b661-3e3635bb66f5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getTree/000000",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getTree",
+								"000000"
+							]
+						},
+						"description": "Get the project function decomposition tree for a requirement."
+					},
+					"response": []
+				},
+				{
+					"name": "getTree_normal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "77e8be78-5208-45d8-a649-ce33f647ad6f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getTree/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getTree",
+								"1523513842049"
+							]
+						},
+						"description": "Get the project function decomposition tree for a requirement."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "updateTransaction",
+			"description": "",
+			"item": [
+				{
+					"name": "updateTransaction_normal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0a845bce-9346-4721-be02-77102cc02830",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"transactionName\":\"管理员授权\",\"steps\":[{\"name\":\"搜索用户名\",\"ilfs\":[{\"name\":\"用户信息\",\"dataFields\":[{\"value\":\"用户名\"},{\"value\":\"权限等级\"}]}],\"eifs\":[{\"name\":\"\",\"dataFields\":[{\"value\":\"\"}]}]},{\"name\":\"用户授权\",\"ilfs\":[{\"name\":\"用户信息\",\"dataFields\":[{\"value\":\"用户名\"},{\"value\":\"权限等级\"}]}],\"eifs\":[{\"name\":\"\",\"dataFields\":[{\"value\":\"\"}]}]}],\"ILFTable\":[{\"name\":\"用户信息\",\"DET\":\"用户名 密码 权限等级\"},{\"name\":\"估算任务信息\",\"DET\":\"任务ID 任务创建人 项目描述ID 项目模块ID 调整因子ID 任务状态 创建时间 备注信息 项目成本 时间成本 UFP AFP\"},{\"name\":\"项目描述信息\",\"DET\":\"项目描述ID 项目名 项目负责人 联系方式 项目描述 估算方法\"},{\"name\":\"项目模块\",\"DET\":\"项目模块ID 父模块ID 项目模块名\"},{\"name\":\"项目功能\",\"DET\":\"项目功能ID 功能名称 父模块ID\"},{\"name\":\"功能步骤信息\",\"DET\":\"项目步骤ID 项目功能ID 步骤名称\"},{\"name\":\"功能步骤内部逻辑文件信息\",\"DET\":\"内部逻辑文件ID 项目步骤ID 内部逻辑文件名称 数据字段\"},{\"name\":\"功能步骤外部接口文件信息\",\"DET\":\"外部接口文件ID 项目步骤ID 外部接口文件名称 数据字段\"},{\"name\":\"事务功能点\",\"DET\":\"事务功能点ID 事务名称 事务类型 逻辑文件 数据字段 逻辑文件数量 数据字段数量 复杂度 UFP\"},{\"name\":\"数据功能点\",\"DET\":\"数据功能点ID 估算任务ID 数据功能点名称 文件类型 记录文件 数据字段 记录文件数量 数据字段数量 复杂度 UFP\"},{\"name\":\"总内部逻辑文件信息\",\"DET\":\"内部逻辑文件ID 文件名 数据字段 估算任务ID\"},{\"name\":\"总外部接口文件信息\",\"DET\":\"外部接口文件ID 文件名 数据字段 估算任务ID\"},{\"name\":\"调整因子\",\"DET\":\"调整因子ID 开发类型 开发平台 人均成本 人均效率 进度需求 延迟需求 复杂度 可靠性 是否使用数据库 语言类型\"}],\"EIFTable\":[{\"name\":\"身份信息\",\"DET\":\"用户ID 身份证号\"}]}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/updateTransaction/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"updateTransaction",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTransaction_no_requirement_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cde2fdf1-f56c-41c6-8dcc-39103ca9635a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"transactionName\":\"管理员授权\",\"steps\":[{\"name\":\"搜索用户名\",\"ilfs\":[{\"name\":\"用户信息\",\"dataFields\":[{\"value\":\"用户名\"},{\"value\":\"权限等级\"}]}],\"eifs\":[{\"name\":\"\",\"dataFields\":[{\"value\":\"\"}]}]},{\"name\":\"用户授权\",\"ilfs\":[{\"name\":\"用户信息\",\"dataFields\":[{\"value\":\"用户名\"},{\"value\":\"权限等级\"}]}],\"eifs\":[{\"name\":\"\",\"dataFields\":[{\"value\":\"\"}]}]}],\"ILFTable\":[{\"name\":\"用户信息\",\"DET\":\"用户名 密码 权限等级\"},{\"name\":\"估算任务信息\",\"DET\":\"任务ID 任务创建人 项目描述ID 项目模块ID 调整因子ID 任务状态 创建时间 备注信息 项目成本 时间成本 UFP AFP\"},{\"name\":\"项目描述信息\",\"DET\":\"项目描述ID 项目名 项目负责人 联系方式 项目描述 估算方法\"},{\"name\":\"项目模块\",\"DET\":\"项目模块ID 父模块ID 项目模块名\"},{\"name\":\"项目功能\",\"DET\":\"项目功能ID 功能名称 父模块ID\"},{\"name\":\"功能步骤信息\",\"DET\":\"项目步骤ID 项目功能ID 步骤名称\"},{\"name\":\"功能步骤内部逻辑文件信息\",\"DET\":\"内部逻辑文件ID 项目步骤ID 内部逻辑文件名称 数据字段\"},{\"name\":\"功能步骤外部接口文件信息\",\"DET\":\"外部接口文件ID 项目步骤ID 外部接口文件名称 数据字段\"},{\"name\":\"事务功能点\",\"DET\":\"事务功能点ID 事务名称 事务类型 逻辑文件 数据字段 逻辑文件数量 数据字段数量 复杂度 UFP\"},{\"name\":\"数据功能点\",\"DET\":\"数据功能点ID 估算任务ID 数据功能点名称 文件类型 记录文件 数据字段 记录文件数量 数据字段数量 复杂度 UFP\"},{\"name\":\"总内部逻辑文件信息\",\"DET\":\"内部逻辑文件ID 文件名 数据字段 估算任务ID\"},{\"name\":\"总外部接口文件信息\",\"DET\":\"外部接口文件ID 文件名 数据字段 估算任务ID\"},{\"name\":\"调整因子\",\"DET\":\"调整因子ID 开发类型 开发平台 人均成本 人均效率 进度需求 延迟需求 复杂度 可靠性 是否使用数据库 语言类型\"}],\"EIFTable\":[{\"name\":\"身份信息\",\"DET\":\"用户ID 身份证号\"}]}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/updateTransaction/",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"updateTransaction",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTransaction_error_requirement_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c92f5273-714c-4795-8e9c-0b9d07968a74",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"transactionName\":\"管理员授权\",\"steps\":[{\"name\":\"搜索用户名\",\"ilfs\":[{\"name\":\"用户信息\",\"dataFields\":[{\"value\":\"用户名\"},{\"value\":\"权限等级\"}]}],\"eifs\":[{\"name\":\"\",\"dataFields\":[{\"value\":\"\"}]}]},{\"name\":\"用户授权\",\"ilfs\":[{\"name\":\"用户信息\",\"dataFields\":[{\"value\":\"用户名\"},{\"value\":\"权限等级\"}]}],\"eifs\":[{\"name\":\"\",\"dataFields\":[{\"value\":\"\"}]}]}],\"ILFTable\":[{\"name\":\"用户信息\",\"DET\":\"用户名 密码 权限等级\"},{\"name\":\"估算任务信息\",\"DET\":\"任务ID 任务创建人 项目描述ID 项目模块ID 调整因子ID 任务状态 创建时间 备注信息 项目成本 时间成本 UFP AFP\"},{\"name\":\"项目描述信息\",\"DET\":\"项目描述ID 项目名 项目负责人 联系方式 项目描述 估算方法\"},{\"name\":\"项目模块\",\"DET\":\"项目模块ID 父模块ID 项目模块名\"},{\"name\":\"项目功能\",\"DET\":\"项目功能ID 功能名称 父模块ID\"},{\"name\":\"功能步骤信息\",\"DET\":\"项目步骤ID 项目功能ID 步骤名称\"},{\"name\":\"功能步骤内部逻辑文件信息\",\"DET\":\"内部逻辑文件ID 项目步骤ID 内部逻辑文件名称 数据字段\"},{\"name\":\"功能步骤外部接口文件信息\",\"DET\":\"外部接口文件ID 项目步骤ID 外部接口文件名称 数据字段\"},{\"name\":\"事务功能点\",\"DET\":\"事务功能点ID 事务名称 事务类型 逻辑文件 数据字段 逻辑文件数量 数据字段数量 复杂度 UFP\"},{\"name\":\"数据功能点\",\"DET\":\"数据功能点ID 估算任务ID 数据功能点名称 文件类型 记录文件 数据字段 记录文件数量 数据字段数量 复杂度 UFP\"},{\"name\":\"总内部逻辑文件信息\",\"DET\":\"内部逻辑文件ID 文件名 数据字段 估算任务ID\"},{\"name\":\"总外部接口文件信息\",\"DET\":\"外部接口文件ID 文件名 数据字段 估算任务ID\"},{\"name\":\"调整因子\",\"DET\":\"调整因子ID 开发类型 开发平台 人均成本 人均效率 进度需求 延迟需求 复杂度 可靠性 是否使用数据库 语言类型\"}],\"EIFTable\":[{\"name\":\"身份信息\",\"DET\":\"用户ID 身份证号\"}]}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/updateTransaction/000000",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"updateTransaction",
+								"000000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getTransaction",
+			"description": "",
+			"item": [
+				{
+					"name": "getTransaction_normal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11799f2f-2b95-44db-8eba-3bf2d2c33ef0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tId\":\"1523513967709\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getTransaction/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getTransaction",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransaction_no_transaction_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b174b6b8-b728-4006-b9c9-a86f6419b7bb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getTransaction/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getTransaction",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransaction_error_transaction_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a271d25c-9c1e-468d-a7cb-fc3620d9c360",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tId\":\"000000\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getTransaction/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getTransaction",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "addFile",
+			"description": "",
+			"item": [
+				{
+					"name": "addFile_normal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b63b0289-6888-4213-bc8a-9baf928f2c65",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":\"00001\",\"name\":\"人员管理模块\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addFile/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addFile",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFile_no_node_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d12e6650-1ab2-467f-84d4-d03c5aafdc15",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\":\"00001\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addFile/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addFile",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFile_no_node_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aee4ae0b-82b9-4a09-868c-6f7116b09615",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"人员管理模块\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addFile/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addFile",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFile_no_node_name_and_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef4c03f8-702e-4add-b46c-b71d3808b813",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addFile/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addFile",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TransactionReName",
+			"description": "",
+			"item": [
+				{
+					"name": "\btransactionReName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1bbe55b-a050-48e5-b9cd-0c8f3b5ae374",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"tName\":\"人员管理模块\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\btransactionReName_no_tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "88a47b75-c898-42dd-a782-894d8f6b4642",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tName\":\"人员管理模块\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\btransactionReName_no_tname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a2a8dfa1-2de7-44bf-b758-f0aaf480b9f8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\btransactionReName_no_tid_tname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec9c5966-8339-475e-83d8-1e94949f6571",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\btransactionReName_error_tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "659ca6f2-bea6-4c6d-9f2d-fed6cab4c490",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"000000\",\"tName\":\"人员管理模块\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\btransactionReName_error_tname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d65067dd-b96a-448c-9fad-7f8ae74a8a14",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"tName\":\"\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\btransactionReName_error_tid_tname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23c38e03-c1c8-422c-8717-67fc99ceacb6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"000000\",\"tName\":\"\",\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/TransactionReName/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"TransactionReName",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "addTree",
+			"description": "",
+			"item": [
+				{
+					"name": "addTree_normal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "800d940d-e684-4840-bbe1-a56d893d5890",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\",\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addTree/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addTree",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTree_no_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff663071-c919-4347-b1e7-fb371bc0716e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"name\":\"tree\"}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addTree/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addTree",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTree_no_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab255b70-21a0-4655-89b0-eb7a23e2e47f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[],\"id\":1529048838583}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addTree/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addTree",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTree_no_id_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c0661ec6-cbdd-4f93-a86d-a96fdc6fa974",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tree\":{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"管理员授权\",\"id\":\"1523513967709\"},{\"name\":\"删除管理员\",\"id\":\"1523514312976\"}],\"name\":\"人员管理模块\",\"id\":\"00001\"},{\"childFolders\":[{\"childFolders\":[],\"childFiles\":[{\"name\":\"填写项目说明\",\"id\":\"1523514153138\"},{\"name\":\"功能分解\",\"id\":\"1523514163405\"},{\"name\":\"输入调整因子\",\"id\":\"1523514199061\"}],\"name\":\"估算任务创建模块\",\"id\":\"1523514144422\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"编辑功能分解\",\"id\":\"1523514228965\"},{\"name\":\"编辑调整因子\",\"id\":\"1523514254430\"}],\"name\":\"估算任务编辑模块\",\"id\":\"1523514216238\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"计算事务功能点\",\"id\":\"1523514368600\"},{\"name\":\"查看并修改调整因子\",\"id\":\"1523514409610\"},{\"name\":\"修改估算任务状态\",\"id\":\"1523514436219\"},{\"name\":\"添加估算任务备注\",\"id\":\"1523514448472\"}],\"name\":\"估算报告生成模块\",\"id\":\"1523514347148\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"删除估算任务\",\"id\":\"1523514274645\"},{\"name\":\"搜索估算任务\",\"id\":\"1523514284974\"},{\"name\":\"查看估算任务列表\",\"id\":\"1523514003495\"},{\"name\":\"查看估算工作列表\",\"id\":\"1525325973104\"}],\"name\":\"估算任务管理模块\",\"id\":\"1525308366967\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"查看估算报告\",\"id\":\"1523514294334\"},{\"name\":\"下载估算报告\",\"id\":\"1523514470527\"}],\"name\":\"估算报告管理模块\",\"id\":\"1525311669044\"}],\"childFiles\":[],\"name\":\"估算模块\",\"id\":\"1523513991284\"},{\"childFolders\":[],\"childFiles\":[{\"name\":\"登陆\",\"id\":\"1523513933783\"},{\"name\":\"注册\",\"id\":\"1523513938900\"}],\"name\":\"登陆注册模块\",\"id\":\"1525307853039\"}],\"childFiles\":[]}}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addTree/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addTree",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "addRequirement",
+			"description": "",
+			"item": [
+				{
+					"name": "addRequirement_normal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3572b3b-1397-45f2-ab6a-655fe5d307dc",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var id = pm.response.text();",
+									"pm.environment.set(\"rid\", id);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addRequirement",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addRequirement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRequirement_no_token_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f54b0048-04e9-4ff2-8dea-9338fa371850",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": ""
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addRequirement",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addRequirement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRequirement_error_token_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a0560d62-4f09-494f-9431-5980168d6e00",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "&&&bbb"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addRequirement",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addRequirement"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getRequirement",
+			"description": "",
+			"item": [
+				{
+					"name": "getRequirement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0aea4ef-f2de-45c3-a475-89e2e5e7f3f4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getRequirement/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getRequirement",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRequirement_no_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2a9fec31-4d97-448c-9250-02d39f8a71c2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getRequirement",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getRequirement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRequirement_error_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f74a6c8f-eb27-4e76-b030-21d2ebaf7002",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getRequirement/777",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getRequirement",
+								"777"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getAllRequirementsByUser",
+			"description": "",
+			"item": [
+				{
+					"name": "getAllRequirementsByUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8c1c7b7c-8880-43c1-bb13-3e9f33310e72",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getAllRequirementsByUser",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getAllRequirementsByUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllRequirementsByUser_no_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6078e94d-4ccf-4f78-8fcb-1d1efdb94007",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getAllRequirementsByUser",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getAllRequirementsByUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllRequirementsByUser_error_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "58836337-5ad3-4d88-a5fc-f83a0413a900",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "&&&bbb"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getAllRequirementsByUser",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getAllRequirementsByUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "deleteRequirement",
+			"description": "",
+			"item": [
+				{
+					"name": "deleteRequirement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a5cdcda-b367-439e-ad59-9b117775ecde",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/deleteRequirement/{{rid}}",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"deleteRequirement",
+								"{{rid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRequirement_no_rid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9935dca-f389-43d5-aec0-f39d7c6e0650",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/deleteRequirement/",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"deleteRequirement",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRequirement_error_rid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d8bce05-9484-4dfc-a4ff-49fbf6d1c38b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/deleteRequirement/777",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"deleteRequirement",
+								"777"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "identity",
+			"description": "",
+			"item": [
+				{
+					"name": "identity_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24c0f33d-8cdf-4f30-bb11-63fcd3e019c8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Code is 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.code).to.eql(1);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/identity",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"identity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "identity_no_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c54e5d5d-a7c1-462c-858c-57543d35c065",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Code is 500\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.code).to.eql(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/identity",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"identity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "identity_error_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "728f7611-bef9-4c1b-a747-6a03ac6ce061",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Code is 200\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.code).to.eql(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "&&&777"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/identity",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"identity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "identity_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9cf01c70-b410-4a85-aa06-75ee60237909",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Code is 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.code).to.eql(0);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/identity",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"identity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "addDescription",
+			"description": "",
+			"item": [
+				{
+					"name": "addDescription",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f3fc26a9-13ee-4145-8b3e-ee1b6d40685d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea714eba-2103-42cb-9990-55fcba1d2200",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectName\":\"test\",\"projectDescription\":\"test\",\"projectLeader\":\"test\",\"projectContact\":\"18803093839\",\"estimationMethod\":\"IFPUG\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addDescription/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addDescription",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDescription_no_rid",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f3fc26a9-13ee-4145-8b3e-ee1b6d40685d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd34b3b9-0c81-49aa-9345-8ab45087c83a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectName\":\"test\",\"projectDescription\":\"test\",\"projectLeader\":\"test\",\"projectContact\":\"18803093839\",\"estimationMethod\":\"IFPUG\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addDescription/",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addDescription",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDescription_error_rid",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f3fc26a9-13ee-4145-8b3e-ee1b6d40685d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6f1de28e-3263-4bf3-9418-96c69415f525",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"projectName\":\"test\",\"projectDescription\":\"test\",\"projectLeader\":\"test\",\"projectContact\":\"18803093839\",\"estimationMethod\":\"IFPUG\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addDescription/777",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addDescription",
+								"777"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "addVAF",
+			"description": "",
+			"item": [
+				{
+					"name": "addVAF",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "015a65b4-c39f-4094-979f-615564653f3d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\",\"cost\":\"20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVAF_no_cost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d8f360a4-9a50-4769-9fb8-92fc6b18ada0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVAF_no_productivity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76825ced-5faa-4b25-aa1d-e0e1f6657fdb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"cost\":\"20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVAF_no_productivity_and_cost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ee64137-3c66-4621-b7de-947a0a1fc6db",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVAF_error_productivity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea54c0be-d8d8-45ee-a138-e0eaef7567cd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\",\"cost\":\"-20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVAF_error_cost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b63f837-b02a-48ef-b98a-605e1effa900",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\",\"cost\":\"-20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addVAF_error_cost_productivity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b63f837-b02a-48ef-b98a-605e1effa900",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"-8\",\"cost\":\"-20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/addVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"addVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "updateResult",
+			"description": "",
+			"item": [
+				{
+					"name": "updateResult",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "156a58c6-ac42-404a-a816-f77adfef7f95",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"1523513967709\",\"eFDs\":[{\"name\":\"用户信息\",\"fileType\":\"ILF\",\"RET\":\"用户基本信息\",\"retNum\":1,\"DET\":\"用户名 密码\",\"detNum\":2,\"complex\":\"无\",\"ufp\":0}],\"eTDs\":[{\"name\":\"搜索\",\"transactionType\":\"EQ\",\"logicalFile\":\"用户信息\",\"DET\":\"用户名 密码\",\"fileNum\":1,\"detNum\":2,\"complex\":\"无\",\"ufp\":0}]}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/updateResult/1528198215570",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"updateResult",
+								"1528198215570"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateResult_no_tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb60bb0d-1e9f-40d4-9a47-cd08082cb018",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"eFDs\":[{\"name\":\"用户信息\",\"fileType\":\"ILF\",\"RET\":\"用户基本信息\",\"retNum\":1,\"DET\":\"用户名 密码\",\"detNum\":2,\"complex\":\"无\",\"ufp\":0}],\"eTDs\":[{\"name\":\"搜索\",\"transactionType\":\"EQ\",\"logicalFile\":\"用户信息\",\"DET\":\"用户名 密码\",\"fileNum\":1,\"detNum\":2,\"complex\":\"无\",\"ufp\":0}]}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/updateResult/1528198215570",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"updateResult",
+								"1528198215570"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateResult_error_tid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76a09c00-33ed-4f6a-ba90-aae1a80f248a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"tId\":\"000000\",\"eFDs\":[{\"name\":\"用户信息\",\"fileType\":\"ILF\",\"RET\":\"用户基本信息\",\"retNum\":1,\"DET\":\"用户名 密码\",\"detNum\":2,\"complex\":\"无\",\"ufp\":0}],\"eTDs\":[{\"name\":\"搜索\",\"transactionType\":\"EQ\",\"logicalFile\":\"用户信息\",\"DET\":\"用户名 密码\",\"fileNum\":1,\"detNum\":2,\"complex\":\"无\",\"ufp\":0}]}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/updateResult/1528198215570",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"updateResult",
+								"1528198215570"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "changeState",
+			"description": "",
+			"item": [
+				{
+					"name": "changeState",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5193856-65b4-43a5-b662-32d269997c88",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"state\":\"待修改\",\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeState_error_rid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5d73e336-ac93-49c6-9cf3-55efeba0d2a9",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"state\":\"待修改\",\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/000",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								"000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeState_error_state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16531c74-ef5f-4dd0-85d3-8b877f571b0f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"state\":\"AABB\",\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeState_error_rid_state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd522997-4d22-4411-923c-a8325fb5afaa",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"state\":\"AABB\",\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/000",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								"000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeState_no_rid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25de5876-a08d-47e1-bf72-655474d82593",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"state\":\"待修改\",\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeState_no_state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37fd985e-48a2-414b-b166-f224e0332e49",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeState_no_state_and_rid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57054af5-7ede-4ea1-8467-4c3fa713d299",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"remark\":\"hi\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeState/",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeState",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "changeVAF",
+			"description": "",
+			"item": [
+				{
+					"name": "changeVAF",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c09e7be0-60a9-48b9-859c-3c33064e2208",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\",\"cost\":\"20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeVAF_no_cost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b60d7b7b-4ac7-41cc-94b7-c4d31fb3ba6a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeVAF_no_productity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "40685bc2-1476-4b7e-9485-7861d2e978c6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"cost\":\"20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeVAF_no_cost_productity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2dab6323-79d3-4f56-9a80-16ffe05d1bcb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeVAF_error_cost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9bbf147f-ea57-494c-98af-8807e9f317a4",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"8\",\"cost\":\"-20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeVAF_error_productity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fea7e71-0afd-493a-919c-2db6f5367827",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"-8\",\"cost\":\"20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changeVAF_error_cost_productity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e1e7f3ea-efda-44d5-b6fa-49c716f95afb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"developmentType\":\"New Development\",\"developmentPlatform\":\"Personal computer\",\"languageType\":\"3GL\",\"DBMS_Used\":\"Yes\",\"RELY\":\"Very Low\",\"CPLX\":\"Very Low\",\"TIME\":\"Very Low\",\"SCED\":\"Very Low\",\"productivity\":\"-8\",\"cost\":\"-20000\"}"
+						},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/changeVAF/1523513842049",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"changeVAF",
+								"1523513842049"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getReport",
+			"description": "",
+			"item": [
+				{
+					"name": "getReport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5aca5306-fc58-474a-8c44-41870c67a11c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getReport/1527576783894",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getReport",
+								"1527576783894"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReport_no_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "098977f5-0f5c-4fd7-973e-283cd597a851",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getReport",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getReport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReport_error_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "75d0aed6-3dca-4396-8097-f90c1e1df39d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "ybjybj"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getReport/000",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getReport",
+								"000"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getAllRequirements",
+			"description": "",
+			"item": [
+				{
+					"name": "getAllRequirements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46675fa1-c213-4a63-b6f9-1c7028d70091",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "xiaoyanxiaoyan"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getAllRequirements",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getAllRequirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllRequirements_no_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ee916ce-923b-47a5-a399-8046775c4f0d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getAllRequirements",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getAllRequirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllRequirements_error_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2c4e5b8-eba3-4bcf-97a9-061040ce45a6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "aaa"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://120.79.245.126:8011/estimation/getAllRequirements",
+							"protocol": "http",
+							"host": [
+								"120",
+								"79",
+								"245",
+								"126"
+							],
+							"port": "8011",
+							"path": [
+								"estimation",
+								"getAllRequirements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

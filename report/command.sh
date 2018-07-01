@@ -1,0 +1,1 @@
+/home/node-v8.11.2-linux-x64/bin/newman run -e estimation-test.postman_environment.json --reporters cli,html --reporter-html-template templates/customHtml.hbs --reporter-html-export ./newman/after.html Interface.postman_collection_2.json
