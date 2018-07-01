@@ -75,12 +75,6 @@ public class VAFServiceIT {
         assertTrue(vafService.change("1",vaf));
     }
 
-    @Test
-    public void testChangeException() throws Exception {
-//TODO: Test goes here...
-        assertFalse(vafService.change("1",vaf));
-    }
-
 
     @Test
     public void testChangeNullVAF() throws Exception {

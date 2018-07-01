@@ -22,6 +22,9 @@ public class VAFService {
 
     public boolean add(String id, VAF vaf) {
         try {
+            if(id == null || vaf == null) {
+                return false;
+            }
             return this.vafDAO.add(id, vaf);
         } catch (Exception e){
             e.printStackTrace();
@@ -31,6 +34,9 @@ public class VAFService {
     
     public boolean change(String id,VAF vaf) {
         try {
+            if(id == null || vaf == null) {
+                return false;
+            }
             return this.vafDAO.change(id, vaf);
         } catch (Exception e){
             e.printStackTrace();

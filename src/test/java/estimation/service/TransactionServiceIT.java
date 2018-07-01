@@ -213,14 +213,6 @@ public class TransactionServiceIT {
 //TODO: Test goes here...
         assertTrue(transactionService.addFile("1","name","11"));
     }
-    /**
-     * Method: geTransaction(String id, String tId)
-     */
-    @Test
-    public void testGeTransactionException() throws Exception {
-//TODO: Test goes here...
-        assertEquals(transactionService.geTransaction("1","tId"),null);
-    }
 
     @Test
     public void testGeTransactionTrue() throws Exception {
